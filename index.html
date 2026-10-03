@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Pecahan Ajaib - Matematika Kelas 4 SD</title>
+    <meta name="description"
+        content="Multimedia Pembelajaran Interaktif Matematika Materi Pecahan untuk Siswa Kelas 4 Sekolah Dasar Kurikulum Merdeka">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Confetti Canvas for Celebrations -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Floating animated background elements -->
+    <div class="floating-shapes" id="floatingShapes">
+        <div class="shape" style="left: 8%; font-size: 3.2rem;">🍕</div>
+        <div class="shape" style="left: 22%; font-size: 2.8rem; animation-delay: 2s;">🍰</div>
+        <div class="shape" style="left: 42%; font-size: 3rem; animation-delay: 5s;">🍫</div>
+        <div class="shape" style="left: 65%; font-size: 2.6rem; animation-delay: 1s;">⭐</div>
+        <div class="shape" style="left: 85%; font-size: 3.4rem; animation-delay: 3s;">🎈</div>
+    </div>
+
+    <div id="app">
+        <!-- Top Navigation Bar -->
+        <header class="top-nav" id="topNav">
+            <div class="brand-badge" id="brandBtn">
+                <span style="font-size: 2.2rem;">🧩</span>
+                <div>
+                    <h1>Pecahan Ajaib</h1>
+                    <small style="color: var(--secondary); font-size: 0.8rem; font-weight: 700;">Matematika Kelas 4 SD -
+                        Kurikulum Merdeka</small>
+                </div>
+            </div>
+
+            <div class="user-status-pill" id="userPill" style="display: none;">
+                <div class="user-avatar" id="navAvatar">🦕</div>
+                <div class="user-info">
+                    <span class="user-name" id="navName">Siswa Hebat</span>
+                    <span class="user-class" id="navClass">Kelas 4A</span>
+                </div>
+                <div class="star-counter" title="Bintang Prestasi yang Kamu Kumpulkan">
+                    <span>⭐</span>
+                    <span id="starScore">0</span>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="btnSound" title="Musik & Suara (Klik untuk Nyala/Mati)">🎵</button>
+                <button class="icon-btn" id="btnHome" title="Kembali ke Beranda" style="display: none;">🏠</button>
+                <button class="icon-btn" id="btnSwitchChar" title="Ganti Karakter Sahabat"
+                    style="display: none;">🎭</button>
+            </div>
+        </header>
+
+        <!-- ==================== 1. SCREEN: LOGIN ==================== -->
+        <section class="screen active" id="screenLogin">
+            <div class="login-wrapper">
+                <div class="login-card">
+                    <div class="login-hero-icon">🍕</div>
+                    <h2>Selamat Datang!</h2>
+                    <p>Yuk mulai petualangan seru belajar pecahan matematika bersama sahabat barumu!</p>
+
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="studentName">👤 Nama Lengkap Siswa:</label>
+                            <input type="text" id="studentName" class="form-control" placeholder="Contoh: Budi Santoso"
+                                required autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="studentClass">🏫 Pilih Kelas:</label>
+                            <select id="studentClass" class="form-control" required>
+                                <option value="" disabled selected>Pilih Kelasmu...</option>
+                                <option value="Kelas 4A">Kelas 4A</option>
+                                <option value="Kelas 4B">Kelas 4B</option>
+                                <option value="Kelas 4C">Kelas 4C</option>
+                                <option value="Kelas 4D">Kelas 4D</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="studentSchool">🏢 Nama Sekolah (Opsional):</label>
+                            <input type="text" id="studentSchool" class="form-control"
+                                placeholder="Contoh: SD Negeri 1 Nusantara">
+                        </div>
+
+                        <button type="submit" class="btn-primary-3d" id="btnStartAdventure">🚀 Masuk
+                            Petualangan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 2. SCREEN: PILIH KARAKTER ==================== -->
+        <section class="screen" id="screenCharacter">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h2>🎭 Pilih Karakter Sahabat Belajarmu</h2>
+                </div>
+                <p style="text-align: center; color: #475569; font-size: 1.1rem; font-weight: 500;">
+                    Pilih salah satu sahabat lucu di bawah yang akan menemanimu belajar dan berpetualang!
+                </p>
+
+                <div class="char-grid" id="charGrid">
+                    <!-- Dynamic from data.js -->
+                </div>
+
+                <div class="char-speech-bubble" id="charGreeting">
+                    💬 Klik salah satu sahabat di atas untuk mendengar suaranya!
+                </div>
+
+                <button class="btn-primary-3d" id="btnConfirmCharacter"
+                    style="max-width: 340px; margin: 26px auto 0; display: block;" disabled>
+                    ✅ Pilih Karakter & Masuk Pulau Pecahan
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== 3. SCREEN: MENU UTAMA / DASHBOARD ==================== -->
+        <section class="screen" id="screenDashboard">
+            <div class="hero-banner">
+                <div class="hero-text">
+                    <h2 id="heroGreeting">Halo, Petualang Cilik! 🌟</h2>
+                    <p>Selamat datang di Pulau Pecahan Ajaib! Pilih petualanganmu di bawah ini:</p>
+                </div>
+                <div class="hero-badge">
+                    <span id="heroAvatar">🦕</span>
+                </div>
+            </div>
+
+            <div class="menu-grid">
+                <!-- 3. Panduan -->
+                <div class="menu-card" data-target="screenPanduan">
+                    <div class="menu-icon" style="background: #E0E7FF; color: #4338CA;">📖</div>
+                    <div class="menu-info">
+                        <h3>Panduan Belajar</h3>
+                        <p>Alur & langkah belajar multimedia</p>
+                    </div>
+                </div>
+
+                <!-- 4. Petunjuk Penggunaan -->
+                <div class="menu-card" data-target="screenPetunjuk">
+                    <div class="menu-icon" style="background: #FEF3C7; color: #D97706;">💡</div>
+                    <div class="menu-info">
+                        <h3>Petunjuk Tombol</h3>
+                        <p>Arti tombol, ikon & navigasi</p>
+                    </div>
+                </div>
+
+                <!-- 5. CP / TP -->
+                <div class="menu-card" data-target="screenCptp">
+                    <div class="menu-icon" style="background: #DCFCE7; color: #15803D;">🎯</div>
+                    <div class="menu-info">
+                        <h3>CP & TP</h3>
+                        <p>Target Kurikulum Merdeka Fase B</p>
+                    </div>
+                </div>
+
+                <!-- 6. Materi -->
+                <div class="menu-card" data-target="screenMateri">
+                    <div class="menu-icon" style="background: #FEE2E2; color: #B91C1C;">📚</div>
+                    <div class="menu-info">
+                        <h3>Materi Interaktif</h3>
+                        <p>Eksplorasi pizza & balok cokelat</p>
+                    </div>
+                </div>
+
+                <!-- 7. Video -->
+                <div class="menu-card" data-target="screenVideo">
+                    <div class="menu-icon" style="background: #E0F2FE; color: #0369A1;">🎬</div>
+                    <div class="menu-info">
+                        <h3>Video Animasi</h3>
+                        <p>Trik perkalian silang & pecahan</p>
+                    </div>
+                </div>
+
+                <!-- 8. Latihan -->
+                <div class="menu-card" data-target="screenLatihan">
+                    <div class="menu-icon" style="background: #F3E8FF; color: #7E22CE;">✏️</div>
+                    <div class="menu-info">
+                        <h3>Latihan Soal</h3>
+                        <p>Asah kemampuan & raih bintang</p>
+                    </div>
+                </div>
+
+                <!-- 9. Game -->
+                <div class="menu-card" data-target="screenGame">
+                    <div class="menu-icon" style="background: #FFEDD5; color: #C2410C;">🎮</div>
+                    <div class="menu-info">
+                        <h3>Game Edukasi</h3>
+                        <p>Koki pizza & tembak balon senilai</p>
+                    </div>
+                </div>
+
+                <!-- 10. Evaluasi -->
+                <div class="menu-card" data-target="screenEvaluasi">
+                    <div class="menu-icon" style="background: #CCFBF1; color: #0F766E;">🏆</div>
+                    <div class="menu-info">
+                        <h3>Evaluasi & Sertifikat</h3>
+                        <p>Ujian akhir & cetak sertifikat resmi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 4. SCREEN: PANDUAN ==================== -->
+        <section class="screen" id="screenPanduan">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h2>📖 Panduan Cara Menggunakan Multimedia</h2>
+                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+                </div>
+                <div id="panduanList" style="display: flex; flex-direction: column; gap: 16px;"></div>
+            </div>
+        </section>
+
+        <!-- ==================== 5. SCREEN: PETUNJUK ==================== -->
+        <section class="screen" id="screenPetunjuk">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h2>💡 Petunjuk Penggunaan & Tombol Navigasi</h2>
+                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+                </div>
+                <div class="char-grid" id="petunjukGrid"></div>
+            </div>
+        </section>
+
+        <!-- ==================== 6. SCREEN: CP & TP ==================== -->
+        <section class="screen" id="screenCptp">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h2>🎯 Capaian & Tujuan Pembelajaran (CP/TP)</h2>
+                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+                </div>
+
+                <div
+                    style="background: #EEF2FF; border-left: 6px solid var(--primary); border-radius: var(--radius-md); padding: 22px; margin-bottom: 24px;">
+                    <h3 id="cpKurikulum"
+                        style="font-family: 'Fredoka', cursive; color: var(--primary-dark); font-size: 1.3rem;">
+                        Kurikulum Merdeka - Fase B (Kelas 4 SD)</h3>
+                    <p style="margin-top: 8px; font-weight: 500; font-size: 1.05rem; line-height: 1.5;" id="cpContent">
+                    </p>
+                </div>
+
+                <h3
+                    style="margin-bottom: 14px; color: var(--primary-dark); font-family: 'Fredoka', cursive; font-size: 1.3rem;">
+                    🎯 Tujuan Pembelajaran (TP):</h3>
+                <ul class="tp-list" id="tpList"
+                    style="display: flex; flex-direction: column; gap: 12px; list-style: none;"></ul>
+
+                <h3
+                    style="margin: 28px 0 14px; color: var(--primary-dark); font-family: 'Fredoka', cursive; font-size: 1.3rem;">
+                    📌 Indikator Ketercapaian Materi:</h3>
+                <ul class="tp-list" id="indikatorList"
+                    style="display: flex; flex-direction: column; gap: 12px; list-style: none;"></ul>
+            </div>
+        </section>
+
+        <!-- ==================== 7. SCREEN: MATERI INTERAKTIF ==================== -->
+        <section class="screen" id="screenMateri">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h2>📚 Materi Pecahan Interaktif</h2>
+                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+                </div>
+
+                <div class="materi-tabs" id="materiTabs"
+                    style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 22px;">
+                </div>
+
+                <div id="materiContentArea"></div>
+            </div>
+        </section>
+
+        <!-- ==================== 8. SCREEN: VIDEO PEMBELAJARAN ==================== -->
+        <section class="screen" id="screenVideo">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h2>🎬 Video Pembelajaran Animasi</h2>
+                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+                </div>
+
+                <div
+                    style="background: black; border-radius: var(--radius-xl); overflow: hidden; position: relative; padding-bottom: 56.25%; height: 0; box-shadow: var(--pop-shadow); margin-bottom: 22px;">
+                    <iframe id="mainVideoPlayer" src="https://www.youtube-nocookie.com/embed/n0FZhQ_GkKw"
+                        title="Video Pembelajaran Pecahan"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        style="position: absolute; top:0; left:0; width:100%; height:100%; border:none;"></iframe>
+                </div>
+
+                <div
+                    style="background: #F8FAFC; border-radius: var(--radius-lg); padding: 22px; border: 2px solid #E2E8F0;">
+                    <h3 id="activeVideoTitle"
+                        style="color: var(--primary-dark); font-family: 'Fredoka', cursive; font-size: 1.3rem;">Judul
+                        Video</h3>
+                    <p id="activeVideoDesc" style="color: #64748B; margin: 8px 0 14px; font-size: 1rem;"></p>
+                    <div id="activeVideoPoints"></div>
+                </div>
+
+                <h3
+                    style="margin: 28px 0 14px; color: var(--primary-dark); font-family: 'Fredoka', cursive; font-size: 1.3rem;">
+                    📺 Pilihan Animasi Lainnya:</h3>
+                <div class="char-grid" id="videoListGrid"
+                    style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));"></div>
+            </div>
+        </section>
+
+        <!-- ==================== 9. SCREEN: LATIHAN SOAL ==================== -->
+        <section class="screen" id="screenLatihan">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h2>✏️ Latihan Soal Mandiri Berbintang</h2>
+                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+                </div>
+
+                <div class="quiz-box" id="quizBox">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; font-weight: 800; margin-bottom: 12px;">
+                        <span id="quizIndex" style="font-size: 1.1rem; color: var(--primary-dark);">Soal 1 dari 8</span>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <button class="hint-btn" id="btnShowHint">💡 Butuh Bantuan?</button>
+                            <span class="star-counter" id="latihanStars">⭐ 0 Bintang</span>
+                        </div>
+                    </div>
+
+                    <div class="hint-bubble" id="hintBubble"></div>
+
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress-fill" id="latihanProgress"></div>
+                    </div>
+
+                    <h3 id="latihanQuestion"
+                        style="font-size: 1.35rem; margin-bottom: 20px; color: #1E293B; line-height: 1.4;">Pertanyaan...
+                    </h3>
+
+                    <div id="latihanVisualContainer"
+                        style="display: flex; justify-content: center; margin-bottom: 20px;"></div>
+
+                    <div class="options-grid" id="latihanOptions"></div>
+
+                    <div class="feedback-card" id="latihanFeedback">
+                        <h4 id="feedbackTitle"
+                            style="font-family: 'Fredoka', cursive; font-size: 1.3rem; margin-bottom: 6px;">Jawaban
+                            Benar!</h4>
+                        <p id="feedbackText" style="font-size: 1rem; line-height: 1.5;"></p>
+                        <button class="btn-primary-3d" id="btnNextLatihan"
+                            style="max-width: 220px; margin-top: 14px;">Soal Berikutnya ➡</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 10. SCREEN: GAME EDUKASI ==================== -->
+        <section class="screen" id="screenGame">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h2>🎮 Game Edukasi Pecahan Seru</h2>
+                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+                </div>
+
+                <div class="game-tabs" style="flex-wrap: wrap;">
+                    <button class="game-tab-btn active" onclick="switchGame('pizza')">🍕 Koki Pizza</button>
+                    <button class="game-tab-btn" onclick="switchGame('balloon')">🎈 Balon Senilai</button>
+                    <button class="game-tab-btn" onclick="switchGame('memory')">🃏 Kartu Ajaib</button>
+                    <button class="game-tab-btn" onclick="switchGame('duel')"
+                        style="background: linear-gradient(135deg, #EF4444, #3B82F6); color: white; border: none;">🤼
+                        Duel Kelas (2 Tim)</button>
+                    <button class="game-tab-btn" onclick="switchGame('wheel')"
+                        style="background: linear-gradient(135deg, #F59E0B, #10B981); color: white; border: none;">🎡
+                        Roda Tantangan</button>
+                </div>
+
+                <!-- Mini-game 1: Pizza Chef -->
+                <div class="game-area" id="gamePizzaArea">
+                    <div class="pizza-chef-customer">
+                        <span style="font-size: 3rem;" id="pizzaCustomerAvatar">🐻</span>
+                        <div>
+                            <h4 id="pizzaCustomerName"
+                                style="font-family: 'Fredoka', cursive; color: #78350F; font-size: 1.2rem;">Pelanggan
+                                Beruang Lapar</h4>
+                            <p id="pizzaChefTarget"
+                                style="font-size: 1.15rem; font-weight: 800; color: #9A3412; margin-top: 2px;">
+                                "Tolong buatkan pizza dengan potongan <strong>3/6</strong>!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <p style="font-weight: 600; color: #64748B; margin-bottom: 12px;">👉 Klik potongan pizza di bawah
+                        ini untuk memilih bagian yang akan disajikan:</p>
+
+                    <div class="pizza-svg-container" style="margin-bottom: 20px;">
+                        <svg id="pizzaGameSvg" width="260" height="260" viewBox="0 0 200 200"></svg>
+                    </div>
+
+                    <div style="display: flex; gap: 14px; align-items: center;">
+                        <button class="btn-primary-3d" id="btnSubmitPizzaOrder"
+                            style="padding: 12px 28px; font-size: 1.1rem; margin: 0;">
+                            🍽️ Sajikan Pesanan Pizza!
+                        </button>
+                        <button class="btn-back" id="btnResetPizzaOrder">🔄 Kosongkan Pilihan</button>
+                    </div>
+
+                    <div id="pizzaGameMsg"
+                        style="margin-top: 18px; font-weight: 800; font-size: 1.15rem; min-height: 28px;"></div>
+                </div>
+
+                <!-- Mini-game 2: Balloon Pop -->
+                <div class="game-area" id="gameBalloonArea" style="display: none;">
+                    <div
+                        style="font-weight: 800; font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 14px; text-align: center;">
+                        🎯 Misi: Klik dan pecahkan balon yang SENILAI dengan <span id="balloonTargetFraction"
+                            style="background: #FEF3C7; color: #B45309; padding: 4px 14px; border-radius: 50px; border: 2px solid #F59E0B;">1/2</span>!
+                    </div>
+                    <div class="balloon-sky" id="balloonSky"></div>
+                    <div
+                        style="display: flex; justify-content: space-between; width: 100%; margin-top: 16px; font-weight: 800; font-size: 1.1rem;">
+                        <span style="color: var(--primary);">Skor Balon: <strong id="balloonScore">0</strong>
+                            Poin</span>
+                        <button class="btn-back" onclick="startBalloonGame()">🔄 Main Ulang Balon</button>
+                    </div>
+                </div>
+
+                <!-- Mini-game 3: Memory Match -->
+                <div class="game-area" id="gameMemoryArea" style="display: none;">
+                    <div
+                        style="font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; color: var(--primary-dark); text-align: center;">
+                        🃏 Buka dua kartu yang memiliki arti atau nilai pecahan yang SAMA!
+                    </div>
+                    <div class="memory-grid" id="memoryGrid"></div>
+                    <div id="memoryWinMsg"
+                        style="margin-top: 20px; font-weight: 800; color: #10B981; font-size: 1.2rem;"></div>
+                </div>
+
+                <!-- Mini-game 4: Duel Tarik Tambang Kelas (2 Tim) -->
+                <div class="game-area" id="gameDuelArea" style="display: none; width: 100%;">
+                    <div
+                        style="background: #EEF2FF; border-radius: var(--radius-lg); padding: 12px 24px; text-align: center; width: 100%; margin-bottom: 16px;">
+                        <h3 style="font-family: 'Fredoka', cursive; color: var(--primary-dark); font-size: 1.4rem;">🤼
+                            Duel Tarik Tambang Pecahan (2 Tim / Kelas)</h3>
+                        <p style="color: #64748B; font-size: 0.95rem; font-weight: 600;">Pilihlah jawaban yang benar
+                            secepat mungkin untuk menarik tambang ke arah timmu!</p>
+                    </div>
+
+                    <!-- Tug of War Visual Arena -->
+                    <div class="tug-arena">
+                        <div class="team-banner team-red">
+                            <span class="team-avatar">🦁</span>
+                            <div>
+                                <h4 class="team-title">Tim Merah</h4>
+                                <small>Tombol Kiri (1, 2, 3, 4)</small>
+                            </div>
+                        </div>
+
+                        <div class="rope-track">
+                            <div class="rope-line"></div>
+                            <div class="rope-knot" id="ropeKnot">🚩</div>
+                            <div class="goal-line left-goal"></div>
+                            <div class="goal-line right-goal"></div>
+                        </div>
+
+                        <div class="team-banner team-blue">
+                            <span class="team-avatar">🦕</span>
+                            <div>
+                                <h4 class="team-title">Tim Biru</h4>
+                                <small>Tombol Kanan (7, 8, 9, 0)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duel Question Card -->
+                    <div class="duel-question-box">
+                        <span class="duel-q-tag" id="duelRoundTag">Ronde 1</span>
+                        <h3 id="duelQuestionText" style="font-size: 1.35rem; color: #1E293B; margin: 10px 0;">Soal
+                            Duel...</h3>
+                    </div>
+
+                    <!-- Duel Answers Grid (Split for 2 Teams) -->
+                    <div class="duel-answers-split">
+                        <div class="team-buttons-col red-col">
+                            <div class="team-col-header">🔴 Jawaban Tim Merah:</div>
+                            <div class="duel-options-list" id="duelRedOptions"></div>
+                        </div>
+
+                        <div class="team-buttons-col blue-col">
+                            <div class="team-col-header">🔵 Jawaban Tim Biru:</div>
+                            <div class="duel-options-list" id="duelBlueOptions"></div>
+                        </div>
+                    </div>
+
+                    <div id="duelWinnerBanner"
+                        style="display: none; margin-top: 16px; font-family: 'Fredoka', cursive; font-size: 1.6rem; text-align: center;">
+                    </div>
+
+                    <button class="btn-back" onclick="initDuelGame()" style="margin-top: 16px;">🔄 Mulai Ulang Duel
+                        Tim</button>
+                </div>
+
+                <!-- Mini-game 5: Roda Putar Tantangan Kelas (Spin the Wheel) -->
+                <div class="game-area" id="gameWheelArea" style="display: none; width: 100%;">
+                    <div
+                        style="background: #FEF3C7; border-radius: var(--radius-lg); padding: 12px 24px; text-align: center; width: 100%; margin-bottom: 20px;">
+                        <h3 style="font-family: 'Fredoka', cursive; color: #B45309; font-size: 1.4rem;">🎡 Roda
+                            Keberuntungan Tantangan Pecahan Kelas</h3>
+                        <p style="color: #92400E; font-size: 0.95rem; font-weight: 600;">Guru atau siswa dapat memutar
+                            roda untuk memilih tantangan kelompok di depan kelas!</p>
+                    </div>
+
+                    <div class="wheel-container">
+                        <div class="wheel-pointer">▼</div>
+                        <canvas id="wheelCanvas" width="320" height="320"></canvas>
+                    </div>
+
+                    <button class="btn-primary-3d" id="btnSpinWheel" style="max-width: 240px; margin: 18px auto 10px;">
+                        🎲 PUTAR RODA!
+                    </button>
+
+                    <!-- Challenge Popup Modal -->
+                    <div class="challenge-result-card" id="challengeResultCard" style="display: none;">
+                        <div class="challenge-badge" id="challengeBadge">Tantangan Pizza</div>
+                        <h4 id="challengeDesc" style="font-size: 1.25rem; color: #1E293B; margin: 12px 0;">Deskripsi
+                            tantangan...</h4>
+                        <div id="challengeAnswerBox"
+                            style="display: none; background: #ECFDF5; border: 2px solid #10B981; padding: 10px 16px; border-radius: var(--radius-md); color: #065F46; font-weight: 800; margin-top: 10px;">
+                        </div>
+                        <button class="btn-back" id="btnShowChallengeAnswer" style="margin-top: 10px;">💡 Buka Kunci
+                            Jawaban</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 11. SCREEN: EVALUASI & SERTIFIKAT ==================== -->
+        <section class="screen" id="screenEvaluasi">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h2>🏆 Ujian Evaluasi & Sertifikat Prestasi</h2>
+                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+                </div>
+
+                <!-- Intro / Start Evaluasi Card -->
+                <div id="evaluasiIntroCard" class="quiz-box" style="text-align: center;">
+                    <div
+                        style="font-size: 4.5rem; margin-bottom: 12px; animation: iconWiggle 2s infinite ease-in-out; display: inline-block;">
+                        📜</div>
+                    <h3 style="font-family: 'Fredoka', cursive; font-size: 2rem; color: var(--primary-dark);">Ujian
+                        Akhir Master Pecahan Kelas 4</h3>
+                    <p
+                        style="color: #64748B; max-width: 520px; margin: 12px auto 24px; font-size: 1.1rem; line-height: 1.5;">
+                        Kerjakan 10 soal evaluasi dengan teliti. Nilai sempurna akan menghasilkan <strong>Sertifikat
+                            Prestasi Emas</strong> dengan namamu!
+                    </p>
+                    <button class="btn-primary-3d" id="btnStartExam"
+                        style="max-width: 280px; margin: 0 auto; display: block;">
+                        ⏱️ Mulai Ujian Evaluasi
+                    </button>
+                </div>
+
+                <!-- Exam in Progress Card -->
+                <div id="evaluasiExamCard" class="quiz-box" style="display: none;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+                        <span style="font-weight: 900; color: var(--primary); font-size: 1.2rem;"
+                            id="examQuestionNum">Soal 1 / 10</span>
+                        <div style="background: #FEE2E2; color: #B91C1C; padding: 6px 16px; border-radius: 50px; font-weight: 800; font-size: 1.1rem;"
+                            id="examTimer">
+                            ⏳ 10:00
+                        </div>
+                    </div>
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress-fill" id="examProgress"></div>
+                    </div>
+
+                    <h3 id="examQuestionText" style="font-size: 1.3rem; margin: 24px 0; line-height: 1.4;">Pertanyaan
+                        evaluasi...</h3>
+
+                    <div class="options-grid" id="examOptionsGrid"></div>
+
+                    <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+                        <button class="btn-primary-3d" id="btnNextExam" style="max-width: 220px;" disabled>Selanjutnya
+                            ➡</button>
+                    </div>
+                </div>
+
+                <!-- Certificate Result Card -->
+                <div id="certificateSection" style="display: none; margin-top: 24px;">
+                    <div class="certificate-preview">
+                        <div class="cert-header">
+                            <h2>SERTIFIKAT PRESTASI EMAS</h2>
+                            <p style="color: #B45309; font-weight: 800; letter-spacing: 2px; font-size: 1.05rem;">MASTER
+                                MATEMATIKA PECAHAN KELAS 4</p>
+                        </div>
+                        <p style="font-size: 1.05rem; color: #64748B; margin-top: 16px;">Diberikan dengan bangga dan
+                            apresiasi setinggi-tingginya kepada:</p>
+                        <div class="cert-name" id="certStudentName">Budi Santoso</div>
+                        <p style="font-size: 1.15rem; color: #1E293B; margin-bottom: 18px;">
+                            Siswa <strong><span id="certStudentClass">Kelas 4A</span></strong> &bull; <strong><span
+                                    id="certStudentSchool">SD Negeri 1 Nusantara</span></strong>
+                        </p>
+                        <p style="max-width: 580px; margin: 0 auto; color: #475569; font-size: 1rem; line-height: 1.5;">
+                            Telah berhasil menuntaskan seluruh petualangan pembelajaran multimedia interaktif matematika
+                            materi pecahan dengan predikat:
+                        </p>
+
+                        <div style="font-size: 2.3rem; font-weight: 900; color: #10B981; margin: 18px 0; font-family: 'Fredoka', cursive;"
+                            id="certGradeText">
+                            SANGAT MEMUASKAN (NILAI: 100)
+                        </div>
+
+                        <div
+                            style="display: inline-flex; align-items: center; justify-content: center; width: 100px; height: 100px; border-radius: 50%; background: #FEF3C7; border: 4px dashed #D97706; font-size: 3rem; margin: 10px auto;">
+                            🌟
+                        </div>
+
+                        <div
+                            style="display: flex; justify-content: space-between; margin-top: 32px; font-weight: 800; font-size: 0.95rem; color: #78350F; border-top: 2px solid #E2E8F0; padding-top: 18px;">
+                            <div>
+                                <p>Sahabat Karakter Belajar:</p>
+                                <p id="certAvatarName"
+                                    style="font-size: 1.25rem; margin-top: 6px; color: var(--primary);">🦕 Dino Pecahan
+                                </p>
+                            </div>
+                            <div>
+                                <p>Tanggal Penerbitan:</p>
+                                <p id="certDate" style="font-size: 1.1rem; margin-top: 6px;">03 Oktober 2026</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="no-print" style="display: flex; justify-content: center; gap: 18px; margin-top: 28px;">
+                        <button class="btn-primary-3d" onclick="window.print()" style="max-width: 260px; margin: 0;">
+                            🖨️ Cetak / Unduh Piagam PDF
+                        </button>
+                        <button class="btn-back" onclick="restartEvaluation()">
+                            🔄 Ulangi Ujian Evaluasi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="audio.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
