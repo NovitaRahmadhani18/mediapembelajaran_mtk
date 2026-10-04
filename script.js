@@ -1177,6 +1177,8 @@ function renderExamQuestion() {
         if (state.selectedExamOption === q.answer) {
             state.evaluasiScore += q.point;
         }
+        
+        state.evaluasiAnswers.push(state.selectedExamOption);
 
         if (state.evaluasiIndex < totalQ - 1) {
             state.evaluasiIndex++;
@@ -1215,9 +1217,9 @@ function finishEvaluation() {
 
     APP_DATA.evaluasiQuestions.forEach((q, idx) => {
         const userAnswerIdx = state.evaluasiAnswers[idx];
-        const isCorrect = userAnswerIdx === q.correct;
+        const isCorrect = userAnswerIdx === q.answer;
         const userAnswerText = userAnswerIdx !== undefined ? q.options[userAnswerIdx] : 'Tidak dijawab';
-        const correctAnswerText = q.options[q.correct];
+        const correctAnswerText = q.options[q.answer];
 
         const item = document.createElement('div');
         item.style.padding = '24px';
@@ -1230,7 +1232,7 @@ function finishEvaluation() {
                 <div style="font-weight: 800; color: #1E293B; font-size: 1.1rem;">Soal ${idx + 1}</div>
                 <div style="font-weight: 800; padding: 6px 12px; border-radius: 8px; background: white; color: ${isCorrect ? '#065F46' : '#991B1B'}; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">${isCorrect ? '✅ Benar' : '❌ Salah'}</div>
             </div>
-            <p style="font-size: 1.15rem; color: #334155; font-weight: 600; margin-bottom: 20px;">${q.question}</p>
+            <p style="font-size: 1.15rem; color: #334155; font-weight: 600; margin-bottom: 20px;">${q.q}</p>
             <div style="font-size: 1.05rem; margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 8px;">
                 <strong style="min-width: 130px;">Jawaban Anda:</strong> 
                 <span style="color: ${isCorrect ? '#10B981' : '#EF4444'}; font-weight: 700;">${userAnswerText}</span>

@@ -59,9 +59,9 @@ const APP_DATA = {
     ],
 
     cptp: {
-        kurikulum: "Kurikulum Merdeka - Matematika Fase B (Kelas 4 SD)",
+        kurikulum: "Kurikulum Merdeka - Matematika (Kelas 4 SD)",
         elemen: "Bilangan (Pecahan Sederhana)",
-        capaianPembelajaran: "Pada akhir Fase B, peserta didik dapat memahami dan membandingkan pecahan senilai, pecahan biasa dan pecahan campuran, serta mengenali pecahan desimal persepuluhan dan perseratusan, serta menghubungkan pecahan desimal dengan persen.",
+        capaianPembelajaran: "Peserta didik dapat memahami dan membandingkan pecahan senilai, pecahan biasa dan pecahan campuran, serta mengenali pecahan desimal persepuluhan dan perseratusan, serta menghubungkan pecahan desimal dengan persen.",
         tujuanPembelajaran: [
             {
                 kode: "TP 1",
@@ -503,70 +503,80 @@ const APP_DATA = {
             q: "Sebuah pizza dipotong menjadi 6 bagian sama besar. Rina memakan 2 bagian. Bagian pizza yang dimakan Rina bernilai...",
             options: ["2/6", "4/6", "6/2", "1/6"],
             answer: 0,
-            point: 10
+            point: 10,
+            explanation: "Rina memakan 2 bagian dari total 6 bagian, sehingga bentuk pecahannya adalah 2/6."
         },
         {
             id: 2,
             q: "Pada pecahan 3/10, angka 10 disebut...",
             options: ["Pembilang", "Penyebut", "Pecahan Desimal", "Hasil Kali"],
             answer: 1,
-            point: 10
+            point: 10,
+            explanation: "Angka yang berada di bawah tanda per disebut Penyebut."
         },
         {
             id: 3,
             q: "Pecahan berikut yang SENILAI dengan 3/4 adalah...",
             options: ["6/8", "5/8", "6/10", "4/5"],
             answer: 0,
-            point: 10
+            point: 10,
+            explanation: "Pecahan 3/4 jika dikalikan 2 pada pembilang dan penyebutnya (3x2=6, 4x2=8) akan menjadi 6/8."
         },
         {
             id: 4,
             q: "Bentuk paling sederhana dari pecahan 8/12 adalah...",
             options: ["4/6", "2/3", "1/2", "3/4"],
             answer: 1,
-            point: 10
+            point: 10,
+            explanation: "Pecahan 8/12 dapat disederhanakan dengan membagi pembilang dan penyebut dengan angka 4, sehingga menjadi 2/3."
         },
         {
             id: 5,
             q: "Tanda perbandingan yang tepat untuk 5/9 ... 3/9 adalah...",
             options: ["<", ">", "=", "+"],
             answer: 1,
-            point: 10
+            point: 10,
+            explanation: "Karena penyebutnya sama (9), kita cukup membandingkan pembilangnya. Karena 5 lebih besar dari 3, maka 5/9 > 3/9."
         },
         {
             id: 6,
             q: "Bandingkan pecahan 1/2 ... 2/3 dengan trik silang! Tanda yang tepat adalah...",
             options: [">", "<", "=", "&ge;"],
             answer: 1,
-            point: 10
+            point: 10,
+            explanation: "Dengan trik silang: 1x3 = 3 dan 2x2 = 4. Karena 3 < 4, maka 1/2 < 2/3."
         },
         {
             id: 7,
             q: "Urutan pecahan 1/4, 3/4, 2/4 dari yang TERKECIL adalah...",
             options: ["1/4, 2/4, 3/4", "3/4, 2/4, 1/4", "2/4, 1/4, 3/4", "1/4, 3/4, 2/4"],
             answer: 0,
-            point: 10
+            point: 10,
+            explanation: "Karena penyebutnya sama (4), kita cukup mengurutkan dari pembilang terkecil: 1, 2, lalu 3. Sehingga urutannya: 1/4, 2/4, 3/4."
         },
         {
             id: 8,
             q: "Pecahan 9/4 jika diubah ke bentuk pecahan campuran adalah...",
             options: ["2 1/4", "2 3/4", "1 5/4", "3 1/4"],
             answer: 0,
-            point: 10
+            point: 10,
+            explanation: "9 dibagi 4 hasilnya 2 sisa 1. Jadi, pecahan campurannya adalah 2 1/4."
         },
         {
             id: 9,
             q: "Bentuk persen (%) dari pecahan 3/4 adalah...",
             options: ["25%", "50%", "75%", "100%"],
             answer: 2,
-            point: 10
+            point: 10,
+            explanation: "Pecahan 3/4 jika penyebutnya dijadikan 100 (dikalikan 25), pembilangnya juga dikali 25 menjadi 75. Maka 75/100 = 75%."
         },
         {
             id: 10,
             q: "Doni memiliki 1 cokelat utuh berisi 10 baris. Diberikan ke adik 3 baris dan kakak 4 baris. Sisa cokelat Doni adalah...",
             options: ["3/10", "7/10", "2/10", "5/10"],
             answer: 0,
-            point: 10
+            point: 10,
+            explanation: "Sisa baris = 10 - 3 - 4 = 3 baris. Dari total 10 baris, sisa cokelatnya adalah 3/10."
         }
     ],
 

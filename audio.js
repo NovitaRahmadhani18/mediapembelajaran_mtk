@@ -163,8 +163,8 @@ class SoundManager {
             osc.frequency.value = notes[noteIndex % notes.length];
             noteIndex++;
 
-            gain.gain.setValueAtTime(0.02, this.ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.9);
+            gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.9);
 
             osc.connect(gain);
             gain.connect(this.ctx.destination);
