@@ -1207,10 +1207,49 @@ function finishEvaluation() {
     const today = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     document.getElementById('certDate').textContent = today.toLocaleDateString('id-ID', options);
+
+    // Render Review Section
+    document.getElementById('evaluasiReviewSection').style.display = 'block';
+    const reviewContainer = document.getElementById('reviewContainer');
+    reviewContainer.innerHTML = '';
+
+    APP_DATA.evaluasiQuestions.forEach((q, idx) => {
+        const userAnswerIdx = state.evaluasiAnswers[idx];
+        const isCorrect = userAnswerIdx === q.correct;
+        const userAnswerText = userAnswerIdx !== undefined ? q.options[userAnswerIdx] : 'Tidak dijawab';
+        const correctAnswerText = q.options[q.correct];
+
+        const item = document.createElement('div');
+        item.style.padding = '24px';
+        item.style.borderRadius = '16px';
+        item.style.border = isCorrect ? '3px solid #10B981' : '3px solid #EF4444';
+        item.style.background = isCorrect ? '#ECFDF5' : '#FEF2F2';
+        
+        item.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div style="font-weight: 800; color: #1E293B; font-size: 1.1rem;">Soal ${idx + 1}</div>
+                <div style="font-weight: 800; padding: 6px 12px; border-radius: 8px; background: white; color: ${isCorrect ? '#065F46' : '#991B1B'}; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">${isCorrect ? '✅ Benar' : '❌ Salah'}</div>
+            </div>
+            <p style="font-size: 1.15rem; color: #334155; font-weight: 600; margin-bottom: 20px;">${q.question}</p>
+            <div style="font-size: 1.05rem; margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 8px;">
+                <strong style="min-width: 130px;">Jawaban Anda:</strong> 
+                <span style="color: ${isCorrect ? '#10B981' : '#EF4444'}; font-weight: 700;">${userAnswerText}</span>
+            </div>
+            <div style="font-size: 1.05rem; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 8px;">
+                <strong style="min-width: 130px;">Kunci Jawaban:</strong> 
+                <span style="color: #10B981; font-weight: 700;">${correctAnswerText}</span>
+            </div>
+            <div style="background: rgba(0,0,0,0.03); padding: 16px; border-radius: 12px; font-size: 1rem; color: #475569; border: 2px dashed #CBD5E1;">
+                <strong>💡 Pembahasan:</strong> <br> ${q.explanation || 'Penjelasan untuk soal ini akan segera ditambahkan.'}
+            </div>
+        `;
+        reviewContainer.appendChild(item);
+    });
 }
 
 function restartEvaluation() {
     window.soundManager.playPop();
     document.getElementById('certificateSection').style.display = 'none';
+    document.getElementById('evaluasiReviewSection').style.display = 'none';
     document.getElementById('evaluasiIntroCard').style.display = 'block';
 }
