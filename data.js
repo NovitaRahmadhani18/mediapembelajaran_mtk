@@ -149,7 +149,7 @@ const APP_DATA = {
 
                     <div class="concept-cards-row">
                         <div class="concept-card top-card">
-                            <span class="number-tag num-color">1</span>
+                            <span class="number-tag num-color" id="conceptNum">1</span>
                             <h4>PEMBILANG (Bagian Atas)</h4>
                             <p>Menunjukkan <strong>berapa potong yang diambil, dimakan, atau diwarnai</strong>.</p>
                         </div>
@@ -158,7 +158,7 @@ const APP_DATA = {
                             <small>Garis Pemisah (Per)</small>
                         </div>
                         <div class="concept-card bot-card">
-                            <span class="number-tag den-color">4</span>
+                            <span class="number-tag den-color" id="conceptDen">4</span>
                             <h4>PENYEBUT (Bagian Bawah)</h4>
                             <p>Menunjukkan <strong>total SEMUA potongan yang sama besar</strong>.</p>
                         </div>
@@ -476,6 +476,24 @@ const APP_DATA = {
             correct: 1,
             hint: "3/4 (0,75) lebih besar dari 1/2 (0,50).",
             explanation: "3x2 = 6, 4x1 = 4. Karena 6 > 4, maka 3/4 > 1/2 adalah BENAR."
+        },
+        {
+            id: 9,
+            type: 'text',
+            question: "Bentuk desimal dari pecahan 1/4 adalah...",
+            options: ["0,5", "0,25", "0,75", "0,14"],
+            correct: 1,
+            hint: "1/4 sama dengan 25/100.",
+            explanation: "1/4 dikali 25/25 menjadi 25/100, yang dalam desimal ditulis 0,25."
+        },
+        {
+            id: 10,
+            type: 'text',
+            question: "Manakah pecahan yang LEBIH KECIL dari 1/2?",
+            options: ["2/3", "3/4", "1/3", "4/8"],
+            correct: 2,
+            hint: "Bandingkan masing-masing pecahan dengan 1/2. Mana yang kurang dari separuh?",
+            explanation: "1/3 lebih kecil dari 1/2. Jika memakai trik silang: 1x2 = 2 dan 3x1 = 3 (2 < 3, jadi 1/3 < 1/2)."
         }
     ],
 
@@ -609,7 +627,7 @@ const APP_DATA = {
         { label: "🍕 Tantangan Pizza", desc: "Jika 1 pizza dipotong 8 bagian dan dimakan 3 potong, berapa bagian yang tersisa?", ans: "5/8 bagian" },
         { label: "⚖️ Senilai Kilat", desc: "Sebutkan 2 pecahan yang senilai dengan 2/3!", ans: "4/6 dan 6/9" },
         { label: "🦋 Trik Silang", desc: "Mana yang lebih besar: 3/5 atau 2/4? Buktikan dengan perkalian silang!", ans: "3/5 > 2/4 (karena 3x4=12 > 5x2=10)" },
-        { label: "🥞 Ubah Campuran", desc: "Ubah pecahan biasa 11/3 menjadi pecahan campuran!", ans: "3 2/3" },
+        { label: "🥞 Ubah Campuran", desc: "Ubah pecahan biasa 11/3 menjadi pecahan campuran!", ans: "3 2/3<br><br><span style='font-size: 0.95rem; font-weight: 500; color: #065F46;'><strong>📖 Penjelasan:</strong> Pecahan 11/3 berarti 11 dibagi 3. Hasil pembagian utuh adalah 3 (karena 3 x 3 = 9). Sisa dari pembagian tersebut adalah 2 (dari 11 - 9). Maka, bilangan bulat utuhnya adalah 3, dan sisanya (2) ditulis sebagai pecahan dengan penyebut awal, sehingga bentuknya menjadi 3 2/3.</span>" },
         { label: "💯 Tebak Persen", desc: "Berapa persen (%) nilai dari pecahan 3/4?", ans: "75%" },
         { label: "⭐ Bonus Kelas", desc: "Hore! Semua kelompok di kelas mendapat 50 Bintang Prestasi!", ans: "Bonus +50 ⭐" }
     ]

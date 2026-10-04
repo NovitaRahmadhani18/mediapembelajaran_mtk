@@ -28,181 +28,163 @@
         <!-- Top Navigation Bar -->
         <header class="top-nav" id="topNav">
             <div class="brand-badge" id="brandBtn">
-                <span style="font-size: 2.2rem;">🧩</span>
+                <span style="font-size: 2.2rem; background: var(--primary); padding: 8px; border-radius: 14px; color: white; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px;">🧩</span>
                 <div>
-                    <h1>Pecahan Ajaib</h1>
-                    <small style="color: var(--secondary); font-size: 0.8rem; font-weight: 700;">Matematika Kelas 4 SD -
-                        Kurikulum Merdeka</small>
+                    <h1 style="color: #1E293B; background: none; -webkit-text-fill-color: initial; font-size: 1.4rem;">Pecahan Ajaib</h1>
+                    <small style="color: #64748B; font-size: 0.8rem; font-weight: 600;">Matematika • Fase B</small>
                 </div>
             </div>
 
-            <div class="user-status-pill" id="userPill" style="display: none;">
-                <div class="user-avatar" id="navAvatar">🦕</div>
-                <div class="user-info">
-                    <span class="user-name" id="navName">Siswa Hebat</span>
-                    <span class="user-class" id="navClass">Kelas 4A</span>
-                </div>
-                <div class="star-counter" title="Bintang Prestasi yang Kamu Kumpulkan">
-                    <span>⭐</span>
-                    <span id="starScore">0</span>
-                </div>
-            </div>
+            <nav class="top-nav-links" id="topNavLinks" style="display: none; margin-left: 32px;">
+                <button class="nav-link-btn active" data-target="screenDashboard">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    Beranda
+                </button>
+                <button class="nav-link-btn" data-target="screenCptp">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                    Tujuan
+                </button>
+                <button class="nav-link-btn" data-target="screenMateri">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    Materi
+                </button>
+                <button class="nav-link-btn" data-target="screenVideo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                    Video
+                </button>
+                <button class="nav-link-btn" data-target="screenLatihan">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    Latihan
+                </button>
+                <button class="nav-link-btn" data-target="screenGame">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line><rect x="2" y="6" width="20" height="12" rx="2"></rect></svg>
+                    Game
+                </button>
+                <button class="nav-link-btn" data-target="screenEvaluasi">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                    Kuis
+                </button>
+            </nav>
 
-            <div class="nav-actions">
-                <button class="icon-btn" id="btnSound" title="Musik & Suara (Klik untuk Nyala/Mati)">🎵</button>
-                <button class="icon-btn" id="btnHome" title="Kembali ke Beranda" style="display: none;">🏠</button>
-                <button class="icon-btn" id="btnSwitchChar" title="Ganti Karakter Sahabat"
-                    style="display: none;">🎭</button>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="nav-actions">
+                    <button class="icon-btn" id="btnSound" title="Musik & Suara">🎵</button>
+                    <button class="icon-btn" id="btnHome" style="display: none;">🏠</button>
+                </div>
             </div>
         </header>
 
-        <!-- ==================== 1. SCREEN: LOGIN ==================== -->
-        <section class="screen active" id="screenLogin">
-            <div class="login-wrapper">
-                <div class="login-card">
-                    <div class="login-hero-icon">🍕</div>
-                    <h2>Selamat Datang!</h2>
-                    <p>Yuk mulai petualangan seru belajar pecahan matematika bersama sahabat barumu!</p>
-
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <label for="studentName">👤 Nama Lengkap Siswa:</label>
-                            <input type="text" id="studentName" class="form-control" placeholder="Contoh: Budi Santoso"
-                                required autocomplete="off">
+        <!-- ==================== 1. SCREEN: MENU UTAMA / DASHBOARD ==================== -->
+        <section class="screen active" id="screenDashboard" style="gap: 24px; padding: 10px 0 40px;">
+            <!-- Hero Card -->
+            <div class="dash-card hero-layout">
+                <div class="hero-left">
+                    <div class="dash-tag-text">🌟 MEDIA PEMBELAJARAN INTERAKTIF MATEMATIKA</div>
+                    <h1 class="hero-main-title">Menguasai <span style="color: #0EA5E9;">Pecahan</span> Melalui <span style="color: #F59E0B;">Petualangan Interaktif</span></h1>
+                    <p class="hero-main-desc">Belajar mengenali, membaca, dan menyusun pecahan matematika kelas 4 SD dengan modul visual lengkap, video penjelasan terarah, dan gamifikasi edukatif yang seru!</p>
+                    
+                    <div class="hero-btn-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <button class="btn-dash-primary bg-blue" onclick="navigateTo('screenCptp')">
+                            <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span> Tujuan
+                        </button>
+                        <button class="btn-dash-primary bg-orange" onclick="navigateTo('screenMateri')">
+                            <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></span> Materi
+                        </button>
+                        <button class="btn-dash-primary" style="background: #8B5CF6;" onclick="navigateTo('screenVideo')">
+                            <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></span> Video
+                        </button>
+                        <button class="btn-dash-primary" style="background: #EC4899;" onclick="navigateTo('screenLatihan')">
+                            <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></span> Latihan
+                        </button>
+                        <button class="btn-dash-primary" style="background: #10B981;" onclick="navigateTo('screenGame')">
+                            <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line><rect x="2" y="6" width="20" height="12" rx="2"></rect></svg></span> Game
+                        </button>
+                        <button class="btn-dash-primary" style="background: #EF4444;" onclick="navigateTo('screenEvaluasi')">
+                            <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></span> Kuis
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="teacher-greeting-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                        <style>
+                            .speech-bubble {
+                                position: relative;
+                                background: #ffffff;
+                                border-radius: 24px;
+                                padding: 24px;
+                                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                                margin-bottom: 28px;
+                                max-width: 400px;
+                                border: 2px solid #E2E8F0;
+                                text-align: center;
+                            }
+                            .speech-bubble::after {
+                                content: '';
+                                position: absolute;
+                                bottom: -14px;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                border-width: 14px 14px 0;
+                                border-style: solid;
+                                border-color: #ffffff transparent transparent transparent;
+                                z-index: 2;
+                            }
+                            .speech-bubble::before {
+                                content: '';
+                                position: absolute;
+                                bottom: -17px;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                border-width: 16px 16px 0;
+                                border-style: solid;
+                                border-color: #E2E8F0 transparent transparent transparent;
+                                z-index: 1;
+                            }
+                            @keyframes gentleFloat {
+                                0% { transform: translateY(0px); }
+                                50% { transform: translateY(-12px); }
+                                100% { transform: translateY(0px); }
+                            }
+                        </style>
+                        
+                        <div class="speech-bubble">
+                            <h3 style="font-family: 'Fredoka', cursive; color: #4F46E5; font-size: 1.5rem; margin-bottom: 8px;">Halo, Murid-murid Hebat! 👋</h3>
+                            <p style="color: #64748B; font-size: 1.1rem; line-height: 1.5; font-weight: 500; margin: 0;">Ibu Guru siap menemani kalian berpetualang di dunia Pecahan Ajaib. Ayo mulai belajar!</p>
                         </div>
-
-                        <div class="form-group">
-                            <label for="studentClass">🏫 Pilih Kelas:</label>
-                            <select id="studentClass" class="form-control" required>
-                                <option value="" disabled selected>Pilih Kelasmu...</option>
-                                <option value="Kelas 4A">Kelas 4A</option>
-                                <option value="Kelas 4B">Kelas 4B</option>
-                                <option value="Kelas 4C">Kelas 4C</option>
-                                <option value="Kelas 4D">Kelas 4D</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="studentSchool">🏢 Nama Sekolah (Opsional):</label>
-                            <input type="text" id="studentSchool" class="form-control"
-                                placeholder="Contoh: SD Negeri 1 Nusantara">
-                        </div>
-
-                        <button type="submit" class="btn-primary-3d" id="btnStartAdventure">🚀 Masuk
-                            Petualangan</button>
-                    </form>
+                    
+                        <img src="guru_hijab.png" alt="Ibu Guru" style="width: 260px; height: auto; animation: gentleFloat 3.5s ease-in-out infinite; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));">
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- ==================== 2. SCREEN: PILIH KARAKTER ==================== -->
-        <section class="screen" id="screenCharacter">
-            <div class="content-wrapper">
-                <div class="content-header">
-                    <h2>🎭 Pilih Karakter Sahabat Belajarmu</h2>
-                </div>
-                <p style="text-align: center; color: #475569; font-size: 1.1rem; font-weight: 500;">
-                    Pilih salah satu sahabat lucu di bawah yang akan menemanimu belajar dan berpetualang!
-                </p>
-
-                <div class="char-grid" id="charGrid">
-                    <!-- Dynamic from data.js -->
-                </div>
-
-                <div class="char-speech-bubble" id="charGreeting">
-                    💬 Klik salah satu sahabat di atas untuk mendengar suaranya!
-                </div>
-
-                <button class="btn-primary-3d" id="btnConfirmCharacter"
-                    style="max-width: 340px; margin: 26px auto 0; display: block;" disabled>
-                    ✅ Pilih Karakter & Masuk Pulau Pecahan
-                </button>
-            </div>
-        </section>
-
-        <!-- ==================== 3. SCREEN: MENU UTAMA / DASHBOARD ==================== -->
-        <section class="screen" id="screenDashboard">
-            <div class="hero-banner">
-                <div class="hero-text">
-                    <h2 id="heroGreeting">Halo, Petualang Cilik! 🌟</h2>
-                    <p>Selamat datang di Pulau Pecahan Ajaib! Pilih petualanganmu di bawah ini:</p>
-                </div>
-                <div class="hero-badge">
-                    <span id="heroAvatar">🦕</span>
-                </div>
+            <!-- CP / TP Card -->
+            <div class="dash-card center-text">
+                <div class="dash-tag-text centered">🎯 CAPAIAN PEMBELAJARAN KURIKULUM MERDEKA</div>
+                <h2 class="cp-title">Konsep Pokok Pecahan Kelas 4</h2>
+                <p class="cp-desc">Memahami pecahan sebagai bagian dari keseluruhan, membandingkan dan mengurutkan pecahan, serta mengenali pecahan senilai menggunakan benda konkret, gambar visual, dan angka.</p>
             </div>
 
-            <div class="menu-grid">
-                <!-- 3. Panduan -->
-                <div class="menu-card" data-target="screenPanduan">
-                    <div class="menu-icon" style="background: #E0E7FF; color: #4338CA;">📖</div>
-                    <div class="menu-info">
-                        <h3>Panduan Belajar</h3>
-                        <p>Alur & langkah belajar multimedia</p>
-                    </div>
+            <!-- Topic Cards -->
+            <div class="topic-cards-grid">
+                <div class="topic-card">
+                    <div class="topic-icon-wrap" style="color: #4F46E5;">👤</div>
+                    <h3>Pecahan Biasa</h3>
+                    <p>Mengenali bentuk pecahan dasar (1/2, 1/3, 1/4) dan pembacaannya dari bagian suatu benda utuh seperti potongan pizza, semangka, atau roti.</p>
                 </div>
-
-                <!-- 4. Petunjuk Penggunaan -->
-                <div class="menu-card" data-target="screenPetunjuk">
-                    <div class="menu-icon" style="background: #FEF3C7; color: #D97706;">💡</div>
-                    <div class="menu-info">
-                        <h3>Petunjuk Tombol</h3>
-                        <p>Arti tombol, ikon & navigasi</p>
-                    </div>
+                <div class="topic-card">
+                    <div class="topic-icon-wrap" style="color: #6D28D9;">🐾</div>
+                    <h3>Pecahan Senilai</h3>
+                    <p>Membuktikan bahwa pecahan 1/2 sama besarnya dengan 2/4 atau 4/8 melalui eksplorasi visual interaktif menggunakan tumpukan balok Dienes.</p>
                 </div>
-
-                <!-- 5. CP / TP -->
-                <div class="menu-card" data-target="screenCptp">
-                    <div class="menu-icon" style="background: #DCFCE7; color: #15803D;">🎯</div>
-                    <div class="menu-info">
-                        <h3>CP & TP</h3>
-                        <p>Target Kurikulum Merdeka Fase B</p>
-                    </div>
+                <div class="topic-card">
+                    <div class="topic-icon-wrap" style="color: #475569;">🏛️</div>
+                    <h3>Membandingkan</h3>
+                    <p>Menentukan mana pecahan yang lebih besar, lebih kecil, atau sama dengan menggunakan tanda (&gt;, &lt;, =) dan metode trik perkalian silang.</p>
                 </div>
-
-                <!-- 6. Materi -->
-                <div class="menu-card" data-target="screenMateri">
-                    <div class="menu-icon" style="background: #FEE2E2; color: #B91C1C;">📚</div>
-                    <div class="menu-info">
-                        <h3>Materi Interaktif</h3>
-                        <p>Eksplorasi pizza & balok cokelat</p>
-                    </div>
-                </div>
-
-                <!-- 7. Video -->
-                <div class="menu-card" data-target="screenVideo">
-                    <div class="menu-icon" style="background: #E0F2FE; color: #0369A1;">🎬</div>
-                    <div class="menu-info">
-                        <h3>Video Animasi</h3>
-                        <p>Trik perkalian silang & pecahan</p>
-                    </div>
-                </div>
-
-                <!-- 8. Latihan -->
-                <div class="menu-card" data-target="screenLatihan">
-                    <div class="menu-icon" style="background: #F3E8FF; color: #7E22CE;">✏️</div>
-                    <div class="menu-info">
-                        <h3>Latihan Soal</h3>
-                        <p>Asah kemampuan & raih bintang</p>
-                    </div>
-                </div>
-
-                <!-- 9. Game -->
-                <div class="menu-card" data-target="screenGame">
-                    <div class="menu-icon" style="background: #FFEDD5; color: #C2410C;">🎮</div>
-                    <div class="menu-info">
-                        <h3>Game Edukasi</h3>
-                        <p>Koki pizza & tembak balon senilai</p>
-                    </div>
-                </div>
-
-                <!-- 10. Evaluasi -->
-                <div class="menu-card" data-target="screenEvaluasi">
-                    <div class="menu-icon" style="background: #CCFBF1; color: #0F766E;">🏆</div>
-                    <div class="menu-info">
-                        <h3>Evaluasi & Sertifikat</h3>
-                        <p>Ujian akhir & cetak sertifikat resmi</p>
-                    </div>
+                <div class="topic-card">
+                    <div class="topic-icon-wrap" style="color: #D97706;">📦</div>
+                    <h3>Game Pecahan</h3>
+                    <p>Berlatih meracik pesanan pecahan pizza, menembak balon dengan nilai pecahan yang diminta, dan memutar roda keberuntungan untuk tantangan.</p>
                 </div>
             </div>
         </section>
@@ -212,7 +194,7 @@
             <div class="content-wrapper">
                 <div class="content-header">
                     <h2>📖 Panduan Cara Menggunakan Multimedia</h2>
-                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+
                 </div>
                 <div id="panduanList" style="display: flex; flex-direction: column; gap: 16px;"></div>
             </div>
@@ -223,7 +205,7 @@
             <div class="content-wrapper">
                 <div class="content-header">
                     <h2>💡 Petunjuk Penggunaan & Tombol Navigasi</h2>
-                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+
                 </div>
                 <div class="char-grid" id="petunjukGrid"></div>
             </div>
@@ -234,7 +216,7 @@
             <div class="content-wrapper">
                 <div class="content-header">
                     <h2>🎯 Capaian & Tujuan Pembelajaran (CP/TP)</h2>
-                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+
                 </div>
 
                 <div
@@ -265,7 +247,7 @@
             <div class="content-wrapper">
                 <div class="content-header">
                     <h2>📚 Materi Pecahan Interaktif</h2>
-                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+
                 </div>
 
                 <div class="materi-tabs" id="materiTabs"
@@ -281,7 +263,7 @@
             <div class="content-wrapper">
                 <div class="content-header">
                     <h2>🎬 Video Pembelajaran Animasi</h2>
-                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+
                 </div>
 
                 <div
@@ -315,7 +297,7 @@
             <div class="content-wrapper">
                 <div class="content-header">
                     <h2>✏️ Latihan Soal Mandiri Berbintang</h2>
-                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+
                 </div>
 
                 <div class="quiz-box" id="quizBox">
@@ -360,19 +342,15 @@
             <div class="content-wrapper">
                 <div class="content-header">
                     <h2>🎮 Game Edukasi Pecahan Seru</h2>
-                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+
                 </div>
 
                 <div class="game-tabs" style="flex-wrap: wrap;">
                     <button class="game-tab-btn active" onclick="switchGame('pizza')">🍕 Koki Pizza</button>
                     <button class="game-tab-btn" onclick="switchGame('balloon')">🎈 Balon Senilai</button>
                     <button class="game-tab-btn" onclick="switchGame('memory')">🃏 Kartu Ajaib</button>
-                    <button class="game-tab-btn" onclick="switchGame('duel')"
-                        style="background: linear-gradient(135deg, #EF4444, #3B82F6); color: white; border: none;">🤼
-                        Duel Kelas (2 Tim)</button>
-                    <button class="game-tab-btn" onclick="switchGame('wheel')"
-                        style="background: linear-gradient(135deg, #F59E0B, #10B981); color: white; border: none;">🎡
-                        Roda Tantangan</button>
+                    <button class="game-tab-btn" onclick="switchGame('duel')">🤼 Duel Kelas (2 Tim)</button>
+                    <button class="game-tab-btn" onclick="switchGame('wheel')">🎡 Roda Tantangan</button>
                 </div>
 
                 <!-- Mini-game 1: Pizza Chef -->
@@ -539,7 +517,7 @@
             <div class="content-wrapper">
                 <div class="content-header">
                     <h2>🏆 Ujian Evaluasi & Sertifikat Prestasi</h2>
-                    <button class="btn-back" onclick="navigateTo('screenDashboard')">⬅ Beranda</button>
+
                 </div>
 
                 <!-- Intro / Start Evaluasi Card -->
@@ -554,6 +532,12 @@
                         Kerjakan 10 soal evaluasi dengan teliti. Nilai sempurna akan menghasilkan <strong>Sertifikat
                             Prestasi Emas</strong> dengan namamu!
                     </p>
+
+                    <div style="max-width: 320px; margin: 0 auto 24px; text-align: left;">
+                        <label for="evaluasiStudentName" style="display: block; font-weight: 700; font-size: 0.95rem; color: #334155; margin-bottom: 8px;">👤 Masukkan Nama Siswa:</label>
+                        <input type="text" id="evaluasiStudentName" class="form-control" placeholder="Contoh: Budi Santoso" style="border: 2px solid #CBD5E1; padding: 12px; width: 100%; border-radius: var(--radius-md); font-size: 1.05rem;" required autocomplete="off">
+                    </div>
+
                     <button class="btn-primary-3d" id="btnStartExam"
                         style="max-width: 280px; margin: 0 auto; display: block;">
                         ⏱️ Mulai Ujian Evaluasi
@@ -596,10 +580,9 @@
                         </div>
                         <p style="font-size: 1.05rem; color: #64748B; margin-top: 16px;">Diberikan dengan bangga dan
                             apresiasi setinggi-tingginya kepada:</p>
-                        <div class="cert-name" id="certStudentName">Budi Santoso</div>
+                        <div class="cert-name" id="certStudentName">Siswa Kelas 4</div>
                         <p style="font-size: 1.15rem; color: #1E293B; margin-bottom: 18px;">
-                            Siswa <strong><span id="certStudentClass">Kelas 4A</span></strong> &bull; <strong><span
-                                    id="certStudentSchool">SD Negeri 1 Nusantara</span></strong>
+                            <strong><span id="certStudentClass">Fase B Kurikulum Merdeka</span></strong>
                         </p>
                         <p style="max-width: 580px; margin: 0 auto; color: #475569; font-size: 1rem; line-height: 1.5;">
                             Telah berhasil menuntaskan seluruh petualangan pembelajaran multimedia interaktif matematika
@@ -619,9 +602,8 @@
                         <div
                             style="display: flex; justify-content: space-between; margin-top: 32px; font-weight: 800; font-size: 0.95rem; color: #78350F; border-top: 2px solid #E2E8F0; padding-top: 18px;">
                             <div>
-                                <p>Sahabat Karakter Belajar:</p>
-                                <p id="certAvatarName"
-                                    style="font-size: 1.25rem; margin-top: 6px; color: var(--primary);">🦕 Dino Pecahan
+                                <p>Telah Diverifikasi Oleh:</p>
+                                <p style="font-size: 1.25rem; margin-top: 6px; color: var(--primary);">👨‍🏫 Guru Pengampu
                                 </p>
                             </div>
                             <div>
@@ -645,10 +627,27 @@
 
     </div>
 
+    <!-- Success Modal -->
+    <style>
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+    </style>
+    <div id="successModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+        <div style="background: white; border-radius: 30px; padding: 40px 30px; max-width: 480px; width: 90%; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 5px solid #10B981; position: relative; animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+            <img src="guru_hijab.png" alt="Ibu Guru" style="width: 170px; height: auto; animation: gentleFloat 3s ease-in-out infinite; filter: drop-shadow(0 15px 20px rgba(0,0,0,0.2)); margin-top: -100px; margin-bottom: 20px;">
+            <h2 style="font-family: 'Fredoka', cursive; font-size: 2.2rem; color: #10B981; margin-bottom: 12px; line-height: 1.2;">YAY! LUAR BIASA! 🌟</h2>
+            <p style="font-size: 1.15rem; color: #475569; margin-bottom: 24px; line-height: 1.5; font-weight: 500;">Hebat sekali! Kamu berhasil menyelesaikan seluruh latihan dengan penuh semangat dan mengumpulkan <br><strong style="font-size: 1.8rem; color: #F59E0B;" id="modalStars">0</strong> <strong style="font-size: 1.3rem; color: #F59E0B;">Bintang Emas!</strong></p>
+            <button onclick="closeSuccessModal()" style="background: var(--primary); color: white; border: none; padding: 14px 36px; font-size: 1.2rem; font-weight: 800; border-radius: 100px; cursor: pointer; box-shadow: 0 6px 0 var(--primary-dark); transition: transform 0.1s, box-shadow 0.1s; letter-spacing: 0.5px;">Kembali ke Beranda</button>
+        </div>
+    </div>
+
     <!-- Scripts -->
-    <script src="data.js"></script>
+    <script src="data.js?v=11"></script>
     <script src="audio.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=11"></script>
 </body>
 
 </html>

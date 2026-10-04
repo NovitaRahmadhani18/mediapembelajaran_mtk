@@ -3,15 +3,8 @@
 // ==========================================================================
 
 const state = {
-    student: {
-        name: '',
-        class: '',
-        school: 'SD Negeri 1 Nusantara',
-        character: null,
-        stars: 0
-    },
-    currentScreen: 'screenLogin',
-    selectedCharTemp: null,
+    classStars: 0,
+    currentScreen: 'screenDashboard',
 
     // Latihan state
     latihanIndex: 0,
@@ -35,8 +28,6 @@ const state = {
 
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', () => {
-    initLogin();
-    renderCharacters();
     renderPanduan();
     renderPetunjuk();
     renderCptp();
@@ -45,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
     setupSoundControls();
     initConfetti();
+    
+    // Initialize initial screen layout
+    navigateTo('screenDashboard');
 });
 
 // ==================== CONFETTI CELEBRATION ENGINE ====================
@@ -125,19 +119,25 @@ function navigateTo(screenId) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    const userPill = document.getElementById('userPill');
     const btnHome = document.getElementById('btnHome');
-    const btnSwitchChar = document.getElementById('btnSwitchChar');
+    const topNavLinks = document.getElementById('topNavLinks');
 
-    if (screenId === 'screenLogin' || screenId === 'screenCharacter') {
-        userPill.style.display = 'none';
+    if (screenId === 'screenDashboard') {
         btnHome.style.display = 'none';
-        btnSwitchChar.style.display = 'none';
+        if(topNavLinks) topNavLinks.style.display = 'flex';
     } else {
-        userPill.style.display = 'flex';
-        btnHome.style.display = 'flex';
-        btnSwitchChar.style.display = 'flex';
+        btnHome.style.display = 'none'; // Keep hidden, nav links are used
+        if(topNavLinks) topNavLinks.style.display = 'flex';
     }
+    
+    // Update active class on horizontal nav links
+    document.querySelectorAll('.nav-link-btn').forEach(btn => {
+        if (btn.getAttribute('data-target') === screenId) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
 
     if (screenId === 'screenLatihan') {
         startLatihan();
@@ -148,25 +148,22 @@ function navigateTo(screenId) {
 
 function setupNavigation() {
     document.getElementById('brandBtn').addEventListener('click', () => {
-        if (state.student.name && state.student.character) {
-            navigateTo('screenDashboard');
-        }
+        navigateTo('screenDashboard');
     });
 
     document.getElementById('btnHome').addEventListener('click', () => {
         navigateTo('screenDashboard');
     });
 
-    document.getElementById('btnSwitchChar').addEventListener('click', () => {
-        navigateTo('screenCharacter');
-    });
-
-    document.querySelectorAll('.menu-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const target = card.getAttribute('data-target');
+    // Handle clicks on the new horizontal nav links
+    document.querySelectorAll('.nav-link-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-target');
             if (target) navigateTo(target);
         });
     });
+
+    // Buttons and feature cards use inline onclick attributes for navigation.
 }
 
 function setupSoundControls() {
@@ -178,77 +175,13 @@ function setupSoundControls() {
 }
 
 function addStars(count) {
-    state.student.stars += count;
-    document.getElementById('starScore').textContent = state.student.stars;
+    state.classStars += count;
+    const scoreEl = document.getElementById('starScore');
+    if (scoreEl) scoreEl.textContent = state.classStars;
 }
 
 // ==================== 1. LOGIN ====================
-function initLogin() {
-    const form = document.getElementById('loginForm');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        window.soundManager.ensureContext();
-        window.soundManager.playFanfare();
-
-        const nameInput = document.getElementById('studentName').value.trim();
-        const classInput = document.getElementById('studentClass').value;
-        const schoolInput = document.getElementById('studentSchool').value.trim() || 'SD Negeri 1 Nusantara';
-
-        state.student.name = nameInput;
-        state.student.class = classInput;
-        state.student.school = schoolInput;
-
-        document.getElementById('navName').textContent = nameInput;
-        document.getElementById('navClass').textContent = classInput;
-
-        navigateTo('screenCharacter');
-    });
-}
-
-// ==================== 2. CHARACTER SELECTION ====================
-function renderCharacters() {
-    const grid = document.getElementById('charGrid');
-    grid.innerHTML = '';
-
-    APP_DATA.characters.forEach(char => {
-        const card = document.createElement('div');
-        card.className = 'char-card';
-        card.innerHTML = `
-            <div class="char-avatar">${char.avatar}</div>
-            <div class="char-name">${char.name}</div>
-            <div class="char-title">${char.title}</div>
-            <span class="char-badge-tag">${char.badge}</span>
-        `;
-
-        card.addEventListener('click', () => {
-            window.soundManager.playPop();
-            document.querySelectorAll('.char-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-
-            state.selectedCharTemp = char;
-            const greetingEl = document.getElementById('charGreeting');
-            greetingEl.textContent = `"${char.greeting}"`;
-            greetingEl.style.borderColor = char.color;
-
-            document.getElementById('btnConfirmCharacter').disabled = false;
-        });
-
-        grid.appendChild(card);
-    });
-
-    document.getElementById('btnConfirmCharacter').addEventListener('click', () => {
-        if (!state.selectedCharTemp) return;
-        window.soundManager.playFanfare();
-        state.student.character = state.selectedCharTemp;
-
-        document.getElementById('navAvatar').textContent = state.student.character.avatar;
-        document.getElementById('heroAvatar').textContent = state.student.character.avatar;
-        document.getElementById('heroGreeting').textContent = `Halo, ${state.student.name}! (${state.student.character.name}) 🌟`;
-
-        launchConfetti(40);
-        navigateTo('screenDashboard');
-    });
-}
+// ==================== (Removed Login & Character Code) ====================
 
 // ==================== 3 & 4. PANDUAN & PETUNJUK ====================
 function renderPanduan() {
@@ -395,6 +328,12 @@ function setupPizzaSimulator() {
         denVal.textContent = den;
         giantNum.textContent = num;
         giantDen.textContent = den;
+        
+        const conceptNumEl = document.getElementById('conceptNum');
+        if (conceptNumEl) conceptNumEl.textContent = num;
+        
+        const conceptDenEl = document.getElementById('conceptDen');
+        if (conceptDenEl) conceptDenEl.textContent = den;
 
         wordLabel.textContent = `"${words[num]} ${denWords[den]} Bagian"`;
         drawPizzaSVG(svg, num, den);
@@ -647,7 +586,7 @@ function handleLatihanAnswer(selectedIdx, btnElement) {
     }
 
     feedbackText.innerHTML = `<strong>Penjelasan:</strong> ${q.explanation}`;
-    document.getElementById('latihanStars').textContent = `⭐ ${state.student.stars} Bintang`;
+    document.getElementById('latihanStars').textContent = `⭐ ${state.classStars} Bintang`;
 
     document.getElementById('btnNextLatihan').onclick = () => {
         window.soundManager.playPop();
@@ -657,10 +596,16 @@ function handleLatihanAnswer(selectedIdx, btnElement) {
         } else {
             window.soundManager.playFanfare();
             launchConfetti(70);
-            alert(`🎉 Selamat! Kamu telah menyelesaikan seluruh latihan dan mengumpulkan ${state.student.stars} Bintang Emas!`);
-            navigateTo('screenDashboard');
+            document.getElementById('modalStars').textContent = state.classStars;
+            document.getElementById('successModal').style.display = 'flex';
         }
     };
+}
+
+function closeSuccessModal() {
+    if (window.soundManager) window.soundManager.playPop();
+    document.getElementById('successModal').style.display = 'none';
+    navigateTo('screenDashboard');
 }
 
 // ==================== 9. GAME EDUKASI ====================
@@ -1140,7 +1085,22 @@ function spinWheel() {
 }
 
 // ==================== 10. EVALUASI & SERTIFIKAT ====================
-document.getElementById('btnStartExam').addEventListener('click', startEvaluation);
+document.getElementById('btnStartExam').addEventListener('click', () => {
+    const nameInput = document.getElementById('evaluasiStudentName');
+    if (nameInput && nameInput.value.trim() === '') {
+        alert('Mohon masukkan nama siswa terlebih dahulu agar bisa dicetak di sertifikat!');
+        nameInput.focus();
+        return;
+    }
+    
+    if (nameInput) {
+        state.currentExamStudentName = nameInput.value.trim();
+    } else {
+        state.currentExamStudentName = 'Siswa Kelas 4';
+    }
+    
+    startEvaluation();
+});
 
 function startEvaluation() {
     window.soundManager.playPop();
@@ -1236,19 +1196,13 @@ function finishEvaluation() {
     document.getElementById('certificateSection').style.display = 'block';
 
     // Populate Certificate
-    document.getElementById('certStudentName').textContent = state.student.name || 'Budi Santoso';
-    document.getElementById('certStudentClass').textContent = state.student.class || 'Kelas 4A';
-    document.getElementById('certStudentSchool').textContent = state.student.school || 'SD Negeri 1 Nusantara';
+    document.getElementById('certStudentName').textContent = state.currentExamStudentName || 'Siswa Kelas 4';
 
     let predikat = 'SANGAT MEMUASKAN (ISTIMEWA)';
     if (state.evaluasiScore < 70) predikat = 'CUKUP BAIK';
     else if (state.evaluasiScore < 85) predikat = 'MEMUASKAN';
 
     document.getElementById('certGradeText').textContent = `${predikat} - NILAI: ${state.evaluasiScore}/100`;
-
-    if (state.student.character) {
-        document.getElementById('certAvatarName').textContent = `${state.student.character.avatar} ${state.student.character.name}`;
-    }
 
     const today = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
