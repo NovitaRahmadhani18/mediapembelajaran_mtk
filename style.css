@@ -92,6 +92,8 @@ body {
     border-radius: var(--radius-xl);
     box-shadow: var(--card-shadow);
     margin-bottom: 22px;
+    position: relative;
+    z-index: 1000;
 }
 
 .brand-badge {
@@ -1625,3 +1627,51 @@ body {
 .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1; font-weight: bold; margin: 0 2px; }
 .frac span:first-child { border-bottom: 2px solid currentColor; padding: 0 2px; }
 .frac span:last-child { padding: 0 2px; }
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: .3s;
+}
+.toggle-switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+}
+.toggle-switch input:checked + .slider {
+  background-color: #0EA5E9;
+}
+.toggle-switch input:focus + .slider {
+  box-shadow: 0 0 1px #0EA5E9;
+}
+.toggle-switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+.toggle-switch .slider.round {
+  border-radius: 24px;
+}
+.toggle-switch .slider.round:before {
+  border-radius: 50%;
+}

@@ -66,10 +66,37 @@
                 </button>
             </nav>
 
-            <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px; position: relative;">
                 <div class="nav-actions">
-                    <button class="icon-btn" id="btnSound" title="Musik & Suara">🔇</button>
+                    <button class="icon-btn" id="btnSound" title="Pengaturan Audio">🎵</button>
                     <button class="icon-btn" id="btnHome" style="display: none;">🏠</button>
+                </div>
+                
+                <!-- Volume Settings Panel -->
+                <div id="volumePanel" style="display: none; position: absolute; top: 60px; right: 0; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 1px solid #E2E8F0; width: 280px; z-index: 100;">
+                    <h4 style="margin-bottom: 20px; color: #1E293B; font-family: 'Fredoka', cursive; font-size: 1.1rem; border-bottom: 1px solid #E2E8F0; padding-bottom: 12px;">Pengaturan Audio</h4>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span style="font-size: 0.95rem; color: #475569; font-weight: 500;">Efek Suara (SFX)</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="sfxToggle" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <input type="range" id="sfxVolume" min="0" max="100" value="100" style="width: 100%; accent-color: #0EA5E9;">
+                    </div>
+
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span style="font-size: 0.95rem; color: #475569; font-weight: 500;">Musik Latar (BGM)</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="bgmToggle">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <input type="range" id="bgmVolume" min="0" max="100" value="25" style="width: 100%; accent-color: #0EA5E9;">
+                    </div>
                 </div>
             </div>
         </header>

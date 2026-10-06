@@ -8,6 +8,15 @@ class SoundManager {
         this.bgmAudio = new Audio('bgm.m4a');
         this.bgmAudio.loop = true;
         this.bgmAudio.volume = 0.25; // Lower volume to 25% so clicks are louder
+        this.sfxVolume = 1.0;
+    }
+
+    setBgmVolume(val) {
+        this.bgmAudio.volume = Math.max(0, Math.min(1, val));
+    }
+
+    setSfxVolume(val) {
+        this.sfxVolume = Math.max(0, Math.min(1, val));
     }
 
     initAudioContext() {
@@ -35,8 +44,8 @@ class SoundManager {
         osc.frequency.setValueAtTime(450, this.ctx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(850, this.ctx.currentTime + 0.08);
 
-        gain.gain.setValueAtTime(0.25, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.25 * this.sfxVolume, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01 * this.sfxVolume, this.ctx.currentTime + 0.08);
 
         osc.connect(gain);
         gain.connect(this.ctx.destination);
@@ -55,8 +64,8 @@ class SoundManager {
         osc.frequency.setValueAtTime(600, this.ctx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(1200, this.ctx.currentTime + 0.06);
 
-        gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.06);
+        gain.gain.setValueAtTime(0.2 * this.sfxVolume, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01 * this.sfxVolume, this.ctx.currentTime + 0.06);
 
         osc.connect(gain);
         gain.connect(this.ctx.destination);
@@ -77,8 +86,8 @@ class SoundManager {
             osc.frequency.value = freq;
 
             const startTime = this.ctx.currentTime + index * 0.07;
-            gain.gain.setValueAtTime(0.2, startTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.22);
+            gain.gain.setValueAtTime(0.2 * this.sfxVolume, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.001 * this.sfxVolume, startTime + 0.22);
 
             osc.connect(gain);
             gain.connect(this.ctx.destination);
@@ -98,8 +107,8 @@ class SoundManager {
         osc.frequency.setValueAtTime(240, this.ctx.currentTime);
         osc.frequency.linearRampToValueAtTime(160, this.ctx.currentTime + 0.22);
 
-        gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.22);
+        gain.gain.setValueAtTime(0.18 * this.sfxVolume, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01 * this.sfxVolume, this.ctx.currentTime + 0.22);
 
         osc.connect(gain);
         gain.connect(this.ctx.destination);
@@ -128,8 +137,8 @@ class SoundManager {
             osc.frequency.value = n.f;
 
             const st = this.ctx.currentTime + n.t;
-            gain.gain.setValueAtTime(0.25, st);
-            gain.gain.exponentialRampToValueAtTime(0.001, st + n.d);
+            gain.gain.setValueAtTime(0.25 * this.sfxVolume, st);
+            gain.gain.exponentialRampToValueAtTime(0.001 * this.sfxVolume, st + n.d);
 
             osc.connect(gain);
             gain.connect(this.ctx.destination);

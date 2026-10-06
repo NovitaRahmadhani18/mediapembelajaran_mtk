@@ -168,9 +168,51 @@ function setupNavigation() {
 
 function setupSoundControls() {
     const btnSound = document.getElementById('btnSound');
-    btnSound.addEventListener('click', () => {
+    const volumePanel = document.getElementById('volumePanel');
+    const bgmVolumeInput = document.getElementById('bgmVolume');
+    const sfxVolumeInput = document.getElementById('sfxVolume');
+    const bgmToggle = document.getElementById('bgmToggle');
+    const sfxToggle = document.getElementById('sfxToggle');
+
+    // Make btnSound open/close the settings panel
+    btnSound.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (volumePanel.style.display === 'none') {
+            volumePanel.style.display = 'block';
+        } else {
+            volumePanel.style.display = 'none';
+        }
+    });
+
+    // Close panel when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!volumePanel.contains(e.target) && e.target !== btnSound) {
+            volumePanel.style.display = 'none';
+        }
+    });
+
+    // Prevent closing when clicking inside the panel
+    volumePanel.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    bgmToggle.addEventListener('change', (e) => {
         const isBgmOn = window.soundManager.toggleBgm();
-        btnSound.textContent = isBgmOn ? '🎵' : '🔇';
+        e.target.checked = isBgmOn;
+    });
+
+    sfxToggle.addEventListener('change', (e) => {
+        window.soundManager.sfxEnabled = e.target.checked;
+    });
+
+    bgmVolumeInput.addEventListener('input', (e) => {
+        const val = parseInt(e.target.value, 10);
+        window.soundManager.setBgmVolume(val / 100);
+    });
+
+    sfxVolumeInput.addEventListener('input', (e) => {
+        const val = parseInt(e.target.value, 10);
+        window.soundManager.setSfxVolume(val / 100);
     });
 }
 
