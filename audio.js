@@ -7,6 +7,7 @@ class SoundManager {
         this.isPlayingBgm = false;
         this.bgmAudio = new Audio('bgm.m4a');
         this.bgmAudio.loop = true;
+        this.bgmAudio.volume = 0.25; // Lower volume to 25% so clicks are louder
     }
 
     initAudioContext() {
