@@ -646,7 +646,7 @@ const APP_DATA = {
             question: "Perhatikan gambar pizza di bawah! Berapakah nilai pecahan dari potongan yang diwarnai merah?",
             totalSlices: 4,
             shadedSlices: 3,
-            options: ["1/4 (Satu per Empat)", "<span class=\'frac\'><span>2</span><span>4</span></span> (Dua per Empat)", "3/4 (Tiga per Empat)", "<span class=\'frac\'><span>4</span><span>3</span></span> (Empat per Tiga)"],
+            options: ["<span class=\'frac\'><span>1</span><span>4</span></span> (Satu per Empat)", "<span class=\'frac\'><span>2</span><span>4</span></span> (Dua per Empat)", "<span class=\'frac\'><span>3</span><span>4</span></span> (Tiga per Empat)", "<span class=\'frac\'><span>4</span><span>3</span></span> (Empat per Tiga)"],
             correct: 2,
             hint: "Hitung potongan merah (ada 3) lalu pasangkan dengan total semua potongan (ada 4).",
             explanation: "Ada 3 potong berwarna merah dari total 4 potongan sama besar, maka nilainya adalah <span class=\'frac\'><span>3</span><span>4</span></span>."
@@ -655,7 +655,7 @@ const APP_DATA = {
             id: 2,
             type: 'text',
             question: "Pada pecahan <span class=\'frac\'><span>5</span><span>8</span></span>, angka 5 disebut sebagai...",
-            options: ["Pembilang (Atas)", "Penyebut (Bawah)", "Pecahan Campuran", "Hasil Bagi"],
+            options: ["Pembilang", "Penyebut", "Pecahan Campuran", "Hasil Bagi"],
             correct: 0,
             hint: "Angka atas adalah bagian yang diambil/dimakan.",
             explanation: "Angka yang berada di sebelah atas tanda per disebut Pembilang."

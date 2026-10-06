@@ -871,7 +871,7 @@ function renderLatihanQuestion() {
 
     document.getElementById('quizIndex').textContent = `Soal ${state.latihanIndex + 1} dari ${totalQ}`;
     document.getElementById('latihanProgress').style.width = `${((state.latihanIndex) / totalQ) * 100}%`;
-    document.getElementById('latihanQuestion').textContent = q.question;
+    document.getElementById('latihanQuestion').innerHTML = q.question;
 
     // Hint Bubble Setup
     const hintBubble = document.getElementById('hintBubble');
