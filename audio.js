@@ -5,7 +5,8 @@ class SoundManager {
         this.sfxEnabled = true;
         this.bgmEnabled = false;
         this.isPlayingBgm = false;
-        this.bgmTimer = null;
+        this.bgmAudio = new Audio('bgm.m4a');
+        this.bgmAudio.loop = true;
     }
 
     initAudioContext() {
@@ -148,40 +149,17 @@ class SoundManager {
     }
 
     startBgm() {
-        if (!this.ctx || this.isPlayingBgm) return;
+        if (this.isPlayingBgm) return;
         this.isPlayingBgm = true;
 
-        const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 392.00, 349.23, 329.63];
-        let noteIndex = 0;
-
-        const playTick = () => {
-            if (!this.bgmEnabled || !this.isPlayingBgm) return;
-
-            const osc = this.ctx.createOscillator();
-            const gain = this.ctx.createGain();
-            osc.type = 'sine';
-            osc.frequency.value = notes[noteIndex % notes.length];
-            noteIndex++;
-
-            gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.9);
-
-            osc.connect(gain);
-            gain.connect(this.ctx.destination);
-            osc.start();
-            osc.stop(this.ctx.currentTime + 0.9);
-
-            this.bgmTimer = setTimeout(playTick, 700);
-        };
-
-        playTick();
+        if (this.bgmEnabled) {
+            this.bgmAudio.play().catch(e => console.log('BGM play blocked:', e));
+        }
     }
 
     stopBgm() {
         this.isPlayingBgm = false;
-        if (this.bgmTimer) {
-            clearTimeout(this.bgmTimer);
-        }
+        this.bgmAudio.pause();
     }
 }
 
