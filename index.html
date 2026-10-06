@@ -245,16 +245,26 @@
         <!-- ==================== 7. SCREEN: MATERI INTERAKTIF ==================== -->
         <section class="screen" id="screenMateri">
             <div class="content-wrapper">
-                <div class="content-header">
+                <div class="content-header" id="materiHeaderTitle">
                     <h2>📚 Materi Pecahan Interaktif</h2>
-
+                    <p style="text-align: center; color: #64748B; margin-top: 8px;">Pilih menu materi yang ingin kamu pelajari di bawah ini!</p>
                 </div>
 
-                <div class="materi-tabs" id="materiTabs"
-                    style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 22px;">
+                <!-- MENU GRID VIEW -->
+                <div id="materiGridView" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding-bottom: 20px;">
+                    <!-- Cards injected by JS -->
                 </div>
 
-                <div id="materiContentArea"></div>
+                <!-- CONTENT VIEW (Hidden by default) -->
+                <div id="materiContentView" style="display: none;">
+                    <button class="btn-back" id="btnBackToMateriGrid" style="margin-bottom: 24px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 12H5M12 19l-7-7 7-7" />
+                        </svg>
+                        Kembali ke Menu Materi
+                    </button>
+                    <div id="materiContentArea"></div>
+                </div>
             </div>
         </section>
 
@@ -656,9 +666,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="data.js?v=16"></script>
+    <script src="data.js?v=28"></script>
     <script src="audio.js?v=2"></script>
-    <script src="script.js?v=16"></script>
+    <script src="script.js?v=25"></script>
 </body>
 
 </html>

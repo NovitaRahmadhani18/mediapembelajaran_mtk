@@ -263,31 +263,75 @@ function renderCptp() {
 
 // ==================== 6. MATERI INTERAKTIF ====================
 function renderMateri() {
-    const tabs = document.getElementById('materiTabs');
-    tabs.innerHTML = '';
+    const gridView = document.getElementById('materiGridView');
+    const contentView = document.getElementById('materiContentView');
+    const headerTitle = document.getElementById('materiHeaderTitle');
+    const btnBack = document.getElementById('btnBackToMateriGrid');
+    
+    gridView.innerHTML = '';
+    gridView.style.display = 'grid';
+    contentView.style.display = 'none';
+    headerTitle.style.display = 'block';
+
+    const colors = [
+        { bg: '#FDF2F8', border: '#F472B6', text: '#BE185D' }, // Pink
+        { bg: '#EFF6FF', border: '#60A5FA', text: '#1D4ED8' }, // Blue
+        { bg: '#FFFBEB', border: '#FBBF24', text: '#B45309' }, // Amber
+        { bg: '#F5F3FF', border: '#A78BFA', text: '#6D28D9' }, // Purple
+        { bg: '#F0FDF4', border: '#4ADE80', text: '#15803D' }, // Green
+        { bg: '#FEF2F2', border: '#F87171', text: '#B91C1C' }, // Red
+        { bg: '#F8FAFC', border: '#94A3B8', text: '#334155' }, // Slate
+        { bg: '#FFF7ED', border: '#FB923C', text: '#C2410C' }, // Orange
+    ];
 
     APP_DATA.materiList.forEach((materi, idx) => {
-        const btn = document.createElement('button');
-        btn.className = `btn-back ${idx === 0 ? 'active' : ''}`;
-        btn.style.borderRadius = '50px';
-        btn.innerHTML = `${materi.icon} <span>${materi.title.split('.')[1] || materi.title}</span>`;
+        const c = colors[idx % colors.length];
+        const card = document.createElement('div');
+        card.style.background = c.bg;
+        card.style.border = `2px solid ${c.border}`;
+        card.style.borderRadius = '20px';
+        card.style.padding = '24px';
+        card.style.cursor = 'pointer';
+        card.style.transition = 'transform 0.2s, box-shadow 0.2s';
+        card.style.display = 'flex';
+        card.style.flexDirection = 'column';
+        card.style.alignItems = 'center';
+        card.style.textAlign = 'center';
+        card.style.boxShadow = '0 4px 6px rgba(0,0,0,0.05)';
         
-        btn.addEventListener('click', () => {
-            window.soundManager.playPop();
-            document.querySelectorAll('#materiTabs .btn-back').forEach(b => {
-                b.style.background = 'white';
-                b.style.color = '#1E293B';
-                b.style.borderColor = '#CBD5E1';
-            });
-            btn.style.background = 'var(--primary)';
-            btn.style.color = 'white';
-            btn.style.borderColor = 'var(--primary)';
+        card.onmouseover = () => {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 12px 20px rgba(0,0,0,0.1)';
+        };
+        card.onmouseout = () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 4px 6px rgba(0,0,0,0.05)';
+        };
+
+        card.innerHTML = `
+            <div style="font-size: 3rem; margin-bottom: 16px;">${materi.icon}</div>
+            <h3 style="color: ${c.text}; font-size: 1.25rem; font-weight: 800; margin-bottom: 12px;">${materi.title}</h3>
+            <p style="color: #475569; font-size: 0.95rem; line-height: 1.5; font-weight: 500;">${materi.summary}</p>
+        `;
+        
+        card.addEventListener('click', () => {
+            if(window.soundManager) window.soundManager.playPop();
+            gridView.style.display = 'none';
+            headerTitle.style.display = 'none';
+            contentView.style.display = 'block';
             loadMateriContent(materi);
         });
-        tabs.appendChild(btn);
+        
+        gridView.appendChild(card);
     });
 
-    loadMateriContent(APP_DATA.materiList[0]);
+    // Setup Back button
+    btnBack.onclick = () => {
+        if(window.soundManager) window.soundManager.playPop();
+        contentView.style.display = 'none';
+        headerTitle.style.display = 'block';
+        gridView.style.display = 'grid';
+    };
 }
 
 function loadMateriContent(materi) {
@@ -298,7 +342,269 @@ function loadMateriContent(materi) {
         setupPizzaSimulator();
     } else if (materi.id === 'membandingkan-pecahan') {
         setupComparatorTool();
+    } else if (materi.id === 'pecahan-campuran') {
+        setupCampuran();
+    } else if (materi.id === 'pecahan-desimal') {
+        setupDesimal();
+    } else if (materi.id === 'bentuk-persen') {
+        setupPersen();
+    } else if (materi.id === 'penjumlahan-pengurangan') {
+        setupPenjumlahan();
+    } else if (materi.id === 'mengurutkan-pecahan') {
+        setupMengurutkan();
+    } else if (materi.id === 'pecahan-senilai') {
+        setupPecahanSenilai();
     }
+}
+
+function setupPecahanSenilai() {
+    const btnBenar = document.getElementById('btnLatihanBenar');
+    const btnSalah = document.getElementById('btnLatihanSalah');
+    const feedback = document.getElementById('latihanFeedback');
+
+    if (!btnBenar || !btnSalah) return;
+
+    btnBenar.onclick = () => {
+        if(window.soundManager) window.soundManager.playCorrect();
+        btnBenar.style.borderColor = '#10B981';
+        btnBenar.style.background = '#D1FAE5';
+        btnBenar.style.color = '#065F46';
+        
+        btnSalah.style.borderColor = '#94A3B8';
+        btnSalah.style.background = 'white';
+        btnSalah.style.color = 'black';
+        
+        feedback.style.color = '#10B981';
+        feedback.innerHTML = '✨ Tepat sekali! 2/4 memiliki ukuran potongan yang sama besar dengan 1/2.';
+        launchConfetti(30);
+    };
+
+    btnSalah.onclick = () => {
+        if(window.soundManager) window.soundManager.playPop(); // Or wrong sound
+        btnSalah.style.borderColor = '#EF4444';
+        btnSalah.style.background = '#FEE2E2';
+        btnSalah.style.color = '#991B1B';
+        
+        btnBenar.style.borderColor = '#94A3B8';
+        btnBenar.style.background = 'white';
+        btnBenar.style.color = 'black';
+        
+        feedback.style.color = '#EF4444';
+        feedback.innerHTML = '❌ Coba perhatikan lagi! 1/4 potongannya lebih kecil dan tidak sama besar dengan 1/2.';
+    };
+}
+function setupMengurutkan() {
+    const btn = document.getElementById('btnUrutkan');
+    const result = document.getElementById('urutResult');
+    const inputs = [
+        document.getElementById('urut1'),
+        document.getElementById('urut2'),
+        document.getElementById('urut3'),
+        document.getElementById('urut4')
+    ];
+
+    btn.onclick = () => {
+        if(window.soundManager) window.soundManager.playPop();
+        
+        let fractions = inputs.map(input => ({
+            num: parseInt(input.value),
+            den: 10
+        }));
+
+        fractions.sort((a, b) => a.num - b.num);
+
+        result.innerHTML = '';
+        fractions.forEach((frac, idx) => {
+            const wrap = document.createElement('div');
+            wrap.style.display = 'flex';
+            wrap.style.flexDirection = 'column';
+            wrap.style.alignItems = 'center';
+            wrap.style.animation = `bounceIn 0.5s ease-out ${idx * 0.1}s both`;
+            
+            wrap.innerHTML = `
+                <span style="font-size: 2.2rem; font-weight: 900; color: #3B82F6;">${frac.num}</span>
+                <div style="width: 50px; height: 4px; background: #1E293B; margin: 4px 0;"></div>
+                <span style="font-size: 2.2rem; font-weight: 900; color: #1E293B;">10</span>
+            `;
+            result.appendChild(wrap);
+            
+            if (idx < fractions.length - 1) {
+                const arrow = document.createElement('span');
+                arrow.style.color = '#94A3B8';
+                arrow.style.fontSize = '2.5rem';
+                arrow.innerHTML = '&#8594;'; // right arrow
+                arrow.style.animation = `bounceIn 0.5s ease-out ${idx * 0.1}s both`;
+                result.appendChild(arrow);
+            }
+        });
+        
+        if(window.soundManager) window.soundManager.playCorrect();
+        launchConfetti(40);
+    };
+}
+
+function setupPenjumlahan() {
+    const num1 = document.getElementById('pjNum1');
+    const num2 = document.getElementById('pjNum2');
+    const op = document.getElementById('pjOp');
+    const resNum = document.getElementById('pjResultNum');
+    const visual = document.getElementById('pjVisualContainer');
+
+    function createPizza(slices, color) {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', '120');
+        svg.setAttribute('height', '120');
+        svg.setAttribute('viewBox', '0 0 200 200');
+        // A simple wrapper to color slices differently, but drawPizzaSVG is hardcoded to red.
+        // We will just use standard drawPizzaSVG for simplicity.
+        drawPizzaSVG(svg, slices, 6, 85);
+        return svg;
+    }
+
+    function createSign(signText) {
+        const span = document.createElement('span');
+        span.style.fontSize = '2rem';
+        span.style.fontWeight = '900';
+        span.style.margin = '0 10px';
+        span.textContent = signText;
+        return span;
+    }
+
+    function update() {
+        const v1 = parseInt(num1.value);
+        const v2 = parseInt(num2.value);
+        const o = op.value;
+        let r = 0;
+        
+        if (o === '+') {
+            r = v1 + v2;
+        } else {
+            r = Math.max(0, v1 - v2);
+        }
+        
+        resNum.textContent = r;
+        if (r < 0) resNum.style.color = '#EF4444';
+        else resNum.style.color = '#10B981';
+
+        visual.innerHTML = '';
+        visual.appendChild(createPizza(v1));
+        visual.appendChild(createSign(o));
+        visual.appendChild(createPizza(v2));
+        visual.appendChild(createSign('='));
+        visual.appendChild(createPizza(r));
+    }
+
+    num1.addEventListener('input', () => { if(window.soundManager) window.soundManager.playPop(); update(); });
+    num2.addEventListener('input', () => { if(window.soundManager) window.soundManager.playPop(); update(); });
+    op.addEventListener('change', () => { if(window.soundManager) window.soundManager.playPop(); update(); });
+    update();
+}
+
+function setupCampuran() {
+    const slider = document.getElementById('campuranSlider');
+    const visual = document.getElementById('campuranVisual');
+    const text = document.getElementById('campuranText');
+    const desc = document.getElementById('campuranDesc');
+
+    function update() {
+        const val = parseInt(slider.value);
+        const whole = Math.floor(val / 4);
+        const remainder = val % 4;
+
+        visual.innerHTML = '';
+        
+        const totalPizzas = Math.ceil(val / 4);
+        for(let i=0; i<Math.max(1, totalPizzas); i++) {
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '200');
+            svg.setAttribute('height', '200');
+            svg.setAttribute('viewBox', '0 0 200 200');
+            
+            let slicesToDraw = 0;
+            if (i < whole) slicesToDraw = 4;
+            else if (i === whole) slicesToDraw = remainder;
+
+            if (slicesToDraw > 0) {
+                drawPizzaSVG(svg, slicesToDraw, 4, 95);
+            } else {
+                // Empty plate
+                drawPizzaSVG(svg, 0, 4, 95);
+            }
+            visual.appendChild(svg);
+        }
+
+        if (whole === 0) {
+            text.innerHTML = `${val}/4`;
+            desc.innerHTML = `Belum sampai 1 utuh`;
+        } else if (remainder === 0) {
+            text.innerHTML = `${val}/4 = ${whole}`;
+            desc.innerHTML = `${whole} pizza utuh!`;
+        } else {
+            text.innerHTML = `${val}/4 = ${whole} <sup>${remainder}</sup>/<sub>4</sub>`;
+            desc.innerHTML = `${whole} utuh dan ${remainder}/4 potong`;
+        }
+    }
+
+    slider.addEventListener('input', () => {
+        if(window.soundManager) window.soundManager.playPop();
+        update();
+    });
+    update();
+}
+
+function setupDesimal() {
+    const slider = document.getElementById('desimalSlider');
+    const grid = document.getElementById('desimalGrid');
+    const text = document.getElementById('desimalText');
+
+    function update() {
+        const val = parseInt(slider.value);
+        grid.innerHTML = '';
+        
+        for(let i=0; i<10; i++) {
+            const block = document.createElement('div');
+            block.style.flex = '1';
+            block.style.borderRight = i < 9 ? '2px solid #1E293B' : 'none';
+            block.style.background = i < val ? '#3B82F6' : '#EFF6FF';
+            grid.appendChild(block);
+        }
+        
+        text.innerHTML = `${val}/10 = 0,${val}`;
+    }
+
+    slider.addEventListener('input', () => {
+        if(window.soundManager) window.soundManager.playPop();
+        update();
+    });
+    update();
+}
+
+function setupPersen() {
+    const slider = document.getElementById('persenSlider');
+    const grid = document.getElementById('persenGrid');
+    const text1 = document.getElementById('persenText1');
+    const text2 = document.getElementById('persenText2');
+
+    function update() {
+        const val = parseInt(slider.value);
+        grid.innerHTML = '';
+        
+        for(let i=0; i<100; i++) {
+            const sq = document.createElement('div');
+            sq.style.background = i < val ? '#DB2777' : 'white';
+            grid.appendChild(sq);
+        }
+        
+        text1.innerHTML = `${val}/100`;
+        text2.innerHTML = `${val}%`;
+    }
+
+    slider.addEventListener('input', () => {
+        const currentVal = parseInt(slider.value);
+        if (window.soundManager && currentVal % 10 === 0) window.soundManager.playPop();
+        update();
+    });
+    update();
 }
 
 function setupPizzaSimulator() {

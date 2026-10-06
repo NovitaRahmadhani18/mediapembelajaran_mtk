@@ -204,56 +204,63 @@ const APP_DATA = {
             summary: 'Pecahan senilai punya luas daerah yang sama besar walau angkanya berbeda!',
             content: `
                 <div class="materi-container">
-                    <div class="story-bubble">
-                        <div class="story-avatar">🍫</div>
-                        <div class="story-text">
-                            <strong>Trik Kancil:</strong> "Makan <strong>1 dari 2 potong cokelat (1/2)</strong> ternyata SAMA BANYAKNYA dengan makan <strong>2 dari 4 potong cokelat (2/4)</strong> atau <strong>4 dari 8 potong (4/8)</strong>! Inilah yang disebut <strong>Pecahan Senilai</strong>!"
+                    <p style="color: #475569; font-size: 1.1rem; margin-bottom: 20px;">Dua pecahan bentuknya berbeda, tetapi menunjuk bagian yang sama besar.</p>
+                    
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: stretch; margin-bottom: 24px;">
+                        
+                        <!-- Left Side: Visual Bars -->
+                        <div style="flex: 1; min-width: 300px; background: #F0F9FF; border-radius: 16px; padding: 24px; border: 2px solid #BAE6FD;">
+                            <div style="font-size: 2rem; font-weight: 800; color: #0369A1; margin-bottom: 20px;">
+                                1/2 = 2/4
+                            </div>
+                            
+                            <!-- Bar 1/2 -->
+                            <div style="display: flex; width: 100%; height: 40px; border: 2px solid #1E293B; border-radius: 8px; overflow: hidden; margin-bottom: 10px;">
+                                <div style="flex: 1; background: #F59E0B; border-right: 2px solid #1E293B;"></div>
+                                <div style="flex: 1; background: white;"></div>
+                            </div>
+                            
+                            <!-- Bar 2/4 -->
+                            <div style="display: flex; width: 100%; height: 40px; border: 2px solid #1E293B; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                                <div style="flex: 1; background: #F59E0B; border-right: 2px solid #1E293B;"></div>
+                                <div style="flex: 1; background: #F59E0B; border-right: 2px solid #1E293B;"></div>
+                                <div style="flex: 1; background: white; border-right: 2px solid #1E293B;"></div>
+                                <div style="flex: 1; background: white;"></div>
+                            </div>
+
+                            <p style="color: #334155; font-size: 0.95rem; line-height: 1.5; font-style: italic;">
+                                Setengah batang sama panjang dengan dua perempat batang.
+                            </p>
                         </div>
+
+                        <!-- Right Side: Explanation Steps -->
+                        <div style="flex: 1; min-width: 300px; background: #FFFBEB; border-radius: 16px; padding: 24px; border: 2px solid #FDE68A;">
+                            <h4 style="color: #B45309; margin-bottom: 16px; font-size: 1.1rem;">Urutan panjang batang:</h4>
+                            
+                            <div style="background: white; padding: 12px 16px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                                1) Warna <strong>1 dari 2</strong> bagian batang pertama.
+                            </div>
+                            
+                            <div style="background: white; padding: 12px 16px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                                2) Warna <strong>2 dari 4</strong> bagian batang kedua.
+                            </div>
+                            
+                            <div style="background: white; padding: 12px 16px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                                3) Panjangnya sama! <strong>1/2 = 2/4</strong>, nilainya sama besar.
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="secret-box">
-                        <h3>🔑 Rumus Rahasia Menemukan Pecahan Senilai:</h3>
-                        <p>Kalikan (atau bagilah) angka <strong>atas dan bawah</strong> dengan <strong>angka yang sama</strong>!</p>
-                        <div class="formula-pills">
-                            <div class="pill">1/2 &times; 2/2 = <strong>2/4</strong></div>
-                            <div class="pill">1/2 &times; 3/3 = <strong>3/6</strong></div>
-                            <div class="pill">1/2 &times; 4/4 = <strong>4/8</strong></div>
+                    <!-- Mini Exercise -->
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed #CBD5E1;">
+                        <p style="font-weight: 800; color: #1E293B; font-size: 1.1rem; margin-bottom: 12px;">Latihan: Pecahan senilai dengan 1/2 ialah ...</p>
+                        
+                        <div style="display: flex; gap: 12px;">
+                            <button id="btnLatihanBenar" style="background: white; border: 2px dashed #94A3B8; border-radius: 12px; padding: 10px 24px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.2s;">2/4</button>
+                            <button id="btnLatihanSalah" style="background: white; border: 2px dashed #94A3B8; border-radius: 12px; padding: 10px 24px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.2s;">1/4</button>
                         </div>
-                    </div>
-
-                    <div class="interactive-lab-card">
-                        <div class="lab-badge">🧪 BUKTI VISUAL: BALOK COKELAT SENILAI</div>
-                        <p style="text-align: center; margin-bottom: 16px;">Lihat! Semua balok di bawah ini memiliki panjang warna hijau yang <strong>sama persis (50%)</strong>:</p>
-
-                        <div class="bars-interactive-list">
-                            <div class="bar-unit">
-                                <span class="unit-label">1/2</span>
-                                <div class="unit-track">
-                                    <div class="unit-fill" style="width: 50%; background: #10B981;">1 dari 2 potong</div>
-                                </div>
-                            </div>
-                            <div class="bar-unit">
-                                <span class="unit-label">2/4</span>
-                                <div class="unit-track">
-                                    <div class="unit-fill" style="width: 50%; background: #3B82F6;">2 dari 4 potong</div>
-                                </div>
-                            </div>
-                            <div class="bar-unit">
-                                <span class="unit-label">3/6</span>
-                                <div class="unit-track">
-                                    <div class="unit-fill" style="width: 50%; background: #EC4899;">3 dari 6 potong</div>
-                                </div>
-                            </div>
-                            <div class="bar-unit">
-                                <span class="unit-label">4/8</span>
-                                <div class="unit-track">
-                                    <div class="unit-fill" style="width: 50%; background: #F59E0B;">4 dari 8 potong</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="text-align: center; margin-top: 14px; font-weight: 800; color: #10B981; font-size: 1.1rem;">
-                            ✨ Kesimpulan: 1/2 = 2/4 = 3/6 = 4/8 (Semuanya Senilai!)
-                        </div>
+                        <div id="latihanFeedback" style="margin-top: 16px; font-weight: 800; font-size: 1.1rem; min-height: 24px;"></div>
                     </div>
                 </div>
             `
@@ -322,33 +329,267 @@ const APP_DATA = {
             `
         },
         {
-            id: 'campuran-desimal-persen',
-            title: '4. Pecahan Campuran, Desimal & Persen',
-            icon: '💎',
-            summary: 'Mengenal bentuk pecahan campuran (1 1/2), desimal (0,5), dan persen (50%).',
+            id: 'pecahan-campuran',
+            title: '4. Pecahan Campuran',
+            icon: '🥞',
+            summary: 'Ada bilangan bulat dan pecahan biasa karena lebih dari 1 benda utuh.',
             content: `
                 <div class="materi-container">
-                    <div class="trio-grid">
-                        <div class="trio-card card-purple">
-                            <div class="trio-icon">🥞</div>
-                            <h4>Pecahan Campuran</h4>
-                            <p>Ada bilangan bulat dan pecahan biasa karena lebih dari 1 benda utuh.</p>
-                            <div class="trio-sample">5/4 = <strong>1 1/4</strong></div>
-                            <small>Artinya 1 martabak utuh + 1/4 potong martabak.</small>
+                    <div class="story-bubble" style="background: #FAF5FF; border-left: 5px solid #A855F7;">
+                        <div class="story-text" style="width: 100%;">
+                            Pecahan campuran terjadi ketika pembilang (atas) lebih besar dari penyebut (bawah). Bayangkan kamu punya lebih dari 1 loyang pizza utuh!
+                        </div>
+                    </div>
+                    <div style="margin-top: 24px; border: 2px dashed #CBD5E1; padding: 24px; border-radius: 20px; text-align: center; background: white;">
+                        <h4 style="color: #475569; margin-bottom: 16px;">LABORATORIUM: PEMBUAT PECAHAN CAMPURAN</h4>
+                        <p style="margin-bottom: 20px; color: #64748B;">Geser tuas untuk mengambil potongan pizza (ukuran per 4 / kuartal):</p>
+                        
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 30px;">
+                            <span style="font-weight: 700; color: #1E293B;">1 Potong</span>
+                            <input type="range" id="campuranSlider" min="1" max="11" value="5" style="width: 250px; cursor: pointer;">
+                            <span style="font-weight: 700; color: #1E293B;">11 Potong</span>
                         </div>
 
-                        <div class="trio-card card-blue">
-                            <div class="trio-icon">🔢</div>
-                            <h4>Pecahan Desimal</h4>
-                            <p>Pecahan persepuluhan atau perseratusan yang ditulis dengan tanda koma (,).</p>
-                            <div class="trio-sample">1/2 = <strong>0,5</strong><br>1/4 = <strong>0,25</strong></div>
+                        <div id="campuranVisual" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; min-height: 100px;">
+                            <!-- Pizzas will be rendered here -->
                         </div>
 
-                        <div class="trio-card card-pink">
-                            <div class="trio-icon">💯</div>
-                            <h4>Bentuk Persen (%)</h4>
-                            <p>Artinya "per seratus". Sangat sering ditemui saat diskon mainan!</p>
-                            <div class="trio-sample">1/2 = 50/100 = <strong>50%</strong><br>1/4 = 25/100 = <strong>25%</strong></div>
+                        <div style="background: #F3E8FF; border: 2px solid #D8B4FE; padding: 16px; border-radius: 16px; display: inline-block;">
+                            <div style="font-size: 2.5rem; font-family: 'Fredoka', cursive; color: #7E22CE;" id="campuranText">
+                                5/4 = 1 1/4
+                            </div>
+                            <div style="color: #9333EA; font-weight: 600; margin-top: 8px;" id="campuranDesc">
+                                1 utuh dan 1/4 potong
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+        },
+        {
+            id: 'pecahan-desimal',
+            title: '5. Pecahan Desimal',
+            icon: '🔢',
+            summary: 'Pecahan persepuluhan atau perseratusan yang ditulis dengan tanda koma (,).',
+            content: `
+                <div class="materi-container">
+                    <div class="story-bubble" style="background: #EFF6FF; border-left: 5px solid #3B82F6;">
+                        <div class="story-text" style="width: 100%;">
+                            Desimal adalah cara lain menulis pecahan. Jika bawahnya 10, maka ada 1 angka di belakang koma (contoh: /10 = 0,...).
+                        </div>
+                    </div>
+                    <div style="margin-top: 24px; border: 2px dashed #CBD5E1; padding: 24px; border-radius: 20px; text-align: center; background: white;">
+                        <h4 style="color: #475569; margin-bottom: 16px;">LABORATORIUM: METERAN DESIMAL</h4>
+                        
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 30px;">
+                            <input type="range" id="desimalSlider" min="1" max="10" value="5" style="width: 300px; cursor: pointer;">
+                        </div>
+
+                        <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+                            <div id="desimalGrid" style="display: flex; width: 300px; height: 40px; border: 3px solid #1E293B; border-radius: 8px; overflow: hidden;">
+                                <!-- 10 blocks -->
+                            </div>
+                        </div>
+
+                        <div style="background: #DBEAFE; border: 2px solid #93C5FD; padding: 16px; border-radius: 16px; display: inline-block; min-width: 200px;">
+                            <div style="font-size: 2.5rem; font-family: 'Fredoka', cursive; color: #1D4ED8;" id="desimalText">
+                                5/10 = 0,5
+                            </div>
+                            <div style="color: #2563EB; font-weight: 600; margin-top: 8px;">
+                                Dibaca: "Nol koma lima"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+        },
+        {
+            id: 'bentuk-persen',
+            title: '6. Bentuk Persen (%)',
+            icon: '💯',
+            summary: 'Artinya "per seratus". Sangat sering ditemui saat ada diskon di toko mainan!',
+            content: `
+                <div class="materi-container">
+                    <div class="story-bubble" style="background: #FDF2F8; border-left: 5px solid #DB2777;">
+                        <div class="story-text" style="width: 100%;">
+                            Persen berarti <strong>per seratus</strong> (/100). 50% sama saja dengan 50/100, atau setengahnya!
+                        </div>
+                    </div>
+                    <div style="margin-top: 24px; border: 2px dashed #CBD5E1; padding: 24px; border-radius: 20px; text-align: center; background: white;">
+                        <h4 style="color: #475569; margin-bottom: 16px;">LABORATORIUM: SCANNER PERSEN</h4>
+                        
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 30px;">
+                            <span style="font-weight: 700; color: #1E293B;">1%</span>
+                            <input type="range" id="persenSlider" min="1" max="100" value="25" style="width: 300px; cursor: pointer;">
+                            <span style="font-weight: 700; color: #1E293B;">100%</span>
+                        </div>
+
+                        <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+                            <div id="persenGrid" style="display: grid; grid-template-columns: repeat(10, 1fr); width: 150px; height: 150px; border: 2px solid #1E293B; background: #F1F5F9; gap: 1px; padding: 1px;">
+                                <!-- 100 small squares -->
+                            </div>
+                        </div>
+
+                        <div style="background: #FCE7F3; border: 2px solid #F9A8D4; padding: 16px; border-radius: 16px; display: inline-flex; align-items: center; gap: 20px;">
+                            <div style="font-size: 2.2rem; font-family: 'Fredoka', cursive; color: #BE185D;" id="persenText1">
+                                25/100
+                            </div>
+                            <div style="font-size: 2.2rem; font-weight: 900; color: #DB2777;">=</div>
+                            <div style="font-size: 2.8rem; font-family: 'Fredoka', cursive; color: #BE185D;" id="persenText2">
+                                25%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+        },
+        {
+            id: 'penjumlahan-pengurangan',
+            title: '7. Penjumlahan & Pengurangan Pecahan',
+            icon: '➕',
+            summary: 'Cara menjumlahkan dan mengurangkan pecahan yang penyebutnya (bawahnya) sama.',
+            content: `
+                <div class="materi-container">
+                    <div class="rules-grid">
+                        <div class="rule-card" style="border-top-color: #10B981;">
+                            <div class="rule-icon">➕</div>
+                            <h4>Penjumlahan (Penyebut Sama)</h4>
+                            <p>Jika angka bawahnya (penyebut) sudah SAMA, kamu hanya perlu menjumlahkan angka atasnya (pembilang) saja!</p>
+                            <div class="example-pill">Contoh: <strong>1/5 + 2/5 = 3/5</strong><br><small>1 potong + 2 potong = 3 potong (ukuran tetap per lima)</small></div>
+                        </div>
+                        <div class="rule-card" style="border-top-color: #EF4444;">
+                            <div class="rule-icon">➖</div>
+                            <h4>Pengurangan (Penyebut Sama)</h4>
+                            <p>Sama seperti penjumlahan, jika bawahnya sudah sama, cukup kurangkan angka yang di atas!</p>
+                            <div class="example-pill">Contoh: <strong>4/7 - 1/7 = 3/7</strong><br><small>4 potong dikurangi 1 potong tinggal 3 potong</small></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 24px; border: 2px dashed #CBD5E1; padding: 24px; border-radius: 20px; text-align: center; background: white;">
+                        <h4 style="color: #475569; margin-bottom: 16px;">LABORATORIUM: MESIN HITUNG PECAHAN</h4>
+                        <p style="margin-bottom: 20px; color: #64748B;">Atur angka pembilang pertama dan kedua, lalu pilih operasinya (+ atau -).</p>
+                        
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 30px;">
+                            <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+                                <input type="number" id="pjNum1" min="1" max="5" value="1" style="width: 60px; font-size: 1.5rem; text-align: center; border: 2px solid #3B82F6; border-radius: 8px;">
+                                <div style="width: 50px; height: 3px; background: #1E293B;"></div>
+                                <span style="font-size: 1.5rem; font-weight: 800;">6</span>
+                            </div>
+                            
+                            <select id="pjOp" style="font-size: 1.5rem; padding: 5px; border: 2px solid #CBD5E1; border-radius: 8px; font-weight: 800;">
+                                <option value="+">+</option>
+                                <option value="-">-</option>
+                            </select>
+
+                            <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+                                <input type="number" id="pjNum2" min="1" max="5" value="2" style="width: 60px; font-size: 1.5rem; text-align: center; border: 2px solid #F59E0B; border-radius: 8px;">
+                                <div style="width: 50px; height: 3px; background: #1E293B;"></div>
+                                <span style="font-size: 1.5rem; font-weight: 800;">6</span>
+                            </div>
+
+                            <span style="font-size: 2rem; font-weight: 900; margin: 0 10px;">=</span>
+
+                            <div style="display: flex; flex-direction: column; gap: 8px; align-items: center; background: #F8FAFC; padding: 10px 20px; border-radius: 12px; border: 2px solid #E2E8F0;">
+                                <span id="pjResultNum" style="font-size: 2rem; font-weight: 800; color: #10B981;">3</span>
+                                <div style="width: 60px; height: 3px; background: #1E293B;"></div>
+                                <span style="font-size: 2rem; font-weight: 800;">6</span>
+                            </div>
+                        </div>
+
+                        <div id="pjVisualContainer" style="display: flex; justify-content: center; gap: 10px; align-items: center; min-height: 120px;">
+                            <!-- SVG Pizza rendering -->
+                        </div>
+                    </div>
+                </div>
+            `
+        },
+        {
+            id: 'garis-bilangan',
+            title: '8. Pecahan pada Garis Bilangan',
+            icon: '📏',
+            summary: 'Melihat letak posisi pecahan di antara angka 0 dan 1.',
+            content: `
+                <div class="materi-container">
+                    <div class="story-bubble" style="background: #EEF2FF; border-left: 5px solid #6366F1;">
+                        <div class="story-text" style="width: 100%;">
+                            <strong>Bayangkan penggaris!</strong> Pecahan biasa (seperti 1/2, 1/4, 3/4) letaknya selalu di antara angka <strong>0</strong> dan <strong>1</strong>.
+                        </div>
+                    </div>
+                    <div class="concept-cards-row" style="margin-top: 20px;">
+                        <div style="width: 100%; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; border: 2px solid #E2E8F0;">
+                            <div style="position: relative; height: 10px; background: #CBD5E1; border-radius: 10px; margin: 40px 20px;">
+                                <div style="position: absolute; left: 0%; top: -10px; width: 4px; height: 30px; background: #1E293B;"></div>
+                                <div style="position: absolute; left: 0%; top: 25px; font-weight: 800; transform: translateX(-50%);">0</div>
+                                
+                                <div style="position: absolute; left: 25%; top: -5px; width: 4px; height: 20px; background: #3B82F6;"></div>
+                                <div style="position: absolute; left: 25%; top: 25px; font-weight: 800; color: #3B82F6; transform: translateX(-50%);">1/4</div>
+                                
+                                <div style="position: absolute; left: 50%; top: -5px; width: 4px; height: 20px; background: #10B981;"></div>
+                                <div style="position: absolute; left: 50%; top: 25px; font-weight: 800; color: #10B981; transform: translateX(-50%);">2/4 (atau 1/2)</div>
+                                
+                                <div style="position: absolute; left: 75%; top: -5px; width: 4px; height: 20px; background: #F59E0B;"></div>
+                                <div style="position: absolute; left: 75%; top: 25px; font-weight: 800; color: #F59E0B; transform: translateX(-50%);">3/4</div>
+                                
+                                <div style="position: absolute; left: 100%; top: -10px; width: 4px; height: 30px; background: #1E293B;"></div>
+                                <div style="position: absolute; left: 100%; top: 25px; font-weight: 800; transform: translateX(-50%);">1 (atau 4/4)</div>
+                            </div>
+                            <p style="margin-top: 50px; font-size: 1.1rem; color: #475569;">Semakin ke kanan posisinya, maka nilai pecahannya akan <strong>semakin besar</strong>!</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        },
+        {
+            id: 'mengurutkan-pecahan',
+            title: '9. Mengurutkan Pecahan',
+            icon: '📈',
+            summary: 'Cara jitu menyusun pecahan dari yang terkecil sampai terbesar!',
+            content: `
+                <div class="materi-container">
+                    <div class="rules-grid">
+                        <div class="rule-card" style="border-top-color: #3B82F6;">
+                            <div class="rule-icon">🔽🔼</div>
+                            <h4>Penyebutnya Sama?</h4>
+                            <p>Sangat gampang! Tinggal urutkan saja angka pembilangnya (yang di atas) dari yang paling kecil ke paling besar.</p>
+                            <div class="example-pill">Urutkan: <strong>3/7, 1/7, 5/7, 2/7</strong><br>Hasil: <strong>1/7, 2/7, 3/7, 5/7</strong></div>
+                        </div>
+                        <div class="rule-card" style="border-top-color: #8B5CF6;">
+                            <div class="rule-icon">🎨</div>
+                            <h4>Gunakan Gambar!</h4>
+                            <p>Jika masih bingung, gambarlah pecahannya! Potongan pizza mana yang paling sedikit warna/isinya, itu yang terkecil!</p>
+                            <div class="example-pill">Bayangkan: <strong>1/2</strong> (setengah pizza) vs <strong>1/4</strong> (sepotong kecil pizza). Maka <strong>1/4</strong> lebih kecil!</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px; border: 2px dashed #CBD5E1; padding: 24px; border-radius: 20px; text-align: center; background: white;">
+                        <h4 style="color: #475569; margin-bottom: 16px;">LABORATORIUM: PODIUM PECAHAN</h4>
+                        <p style="margin-bottom: 20px; color: #64748B;">Geser dan sesuaikan angka di setiap kotak, lalu klik "Urutkan" untuk melihat posisi juaranya!</p>
+                        
+                        <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <input type="number" id="urut1" min="1" max="9" value="5" style="width: 50px; font-size: 1.5rem; text-align: center; border: 2px solid #94A3B8; border-radius: 8px;">
+                                <div style="width: 40px; height: 3px; background: #1E293B; margin: 4px 0;"></div>
+                                <span style="font-size: 1.5rem; font-weight: 800;">10</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <input type="number" id="urut2" min="1" max="9" value="2" style="width: 50px; font-size: 1.5rem; text-align: center; border: 2px solid #94A3B8; border-radius: 8px;">
+                                <div style="width: 40px; height: 3px; background: #1E293B; margin: 4px 0;"></div>
+                                <span style="font-size: 1.5rem; font-weight: 800;">10</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <input type="number" id="urut3" min="1" max="9" value="8" style="width: 50px; font-size: 1.5rem; text-align: center; border: 2px solid #94A3B8; border-radius: 8px;">
+                                <div style="width: 40px; height: 3px; background: #1E293B; margin: 4px 0;"></div>
+                                <span style="font-size: 1.5rem; font-weight: 800;">10</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <input type="number" id="urut4" min="1" max="9" value="4" style="width: 50px; font-size: 1.5rem; text-align: center; border: 2px solid #94A3B8; border-radius: 8px;">
+                                <div style="width: 40px; height: 3px; background: #1E293B; margin: 4px 0;"></div>
+                                <span style="font-size: 1.5rem; font-weight: 800;">10</span>
+                            </div>
+                        </div>
+
+                        <button id="btnUrutkan" style="background: var(--primary); color: white; padding: 12px 24px; border: none; border-radius: 50px; font-weight: 800; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 0 var(--primary-dark);">Susun Terkecil ke Terbesar!</button>
+
+                        <div id="urutResult" style="display: flex; justify-content: center; gap: 20px; margin-top: 30px; font-size: 2rem; font-weight: 800; color: #10B981; min-height: 50px;">
                         </div>
                     </div>
                 </div>
@@ -360,7 +601,7 @@ const APP_DATA = {
         {
             id: "vid1",
             title: "1. Mengenal Konsep Pecahan dengan Pizza & Cokelat",
-            durasi: "04:15",
+            durasi: "02:40",
             thumb: "🍕",
             desc: "Belajar memahami pembilang dan penyebut bersama animasi pizza yang lezat.",
             embedUrl: "https://www.youtube-nocookie.com/embed/n0FZhQ_GkKw",
@@ -373,10 +614,10 @@ const APP_DATA = {
         {
             id: "vid2",
             title: "2. Trik Ajaib Menemukan Pecahan Senilai",
-            durasi: "05:30",
+            durasi: "07:32",
             thumb: "⚖️",
             desc: "Cara mudah mengalikan angka atas dan bawah agar nilainya tetap sama.",
-            embedUrl: "https://www.youtube-nocookie.com/embed/6iW_i8E6GHY",
+            embedUrl: "https://www.youtube-nocookie.com/embed/0hPRfqPFtt8",
             points: [
                 "Kalikan pembilang dan penyebut dengan angka yang sama.",
                 "1/2 sama besarnya dengan 2/4, 3/6, dan 4/8.",
@@ -386,10 +627,10 @@ const APP_DATA = {
         {
             id: "vid3",
             title: "3. Trik Kupu-Kupu Membandingkan Pecahan",
-            durasi: "06:10",
+            durasi: "05:59",
             thumb: "🦋",
             desc: "Trik perkalian silang super cepat membandingkan pecahan beda penyebut.",
-            embedUrl: "https://www.youtube-nocookie.com/embed/n3n7hYVj_i8",
+            embedUrl: "https://www.youtube-nocookie.com/embed/-lGhglcdYY0",
             points: [
                 "Perkalian silang: atas kiri dikali bawah kanan.",
                 "Bandingkan dua angka hasil kali untuk menentukan tanda <, >, atau =.",
