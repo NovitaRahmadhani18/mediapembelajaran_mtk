@@ -375,7 +375,7 @@ function setupPecahanSenilai() {
         btnSalah.style.color = 'black';
         
         feedback.style.color = '#10B981';
-        feedback.innerHTML = '✨ Tepat sekali! 2/4 memiliki ukuran potongan yang sama besar dengan 1/2.';
+        feedback.innerHTML = '✨ Tepat sekali! <span class="frac"><span>2</span><span>4</span></span> memiliki ukuran potongan yang sama besar dengan <span class="frac"><span>1</span><span>2</span></span>.';
         launchConfetti(30);
     };
 
@@ -390,7 +390,7 @@ function setupPecahanSenilai() {
         btnBenar.style.color = 'black';
         
         feedback.style.color = '#EF4444';
-        feedback.innerHTML = '❌ Coba perhatikan lagi! 1/4 potongannya lebih kecil dan tidak sama besar dengan 1/2.';
+        feedback.innerHTML = '❌ Coba perhatikan lagi! <span class="frac"><span>1</span><span>4</span></span> potongannya lebih kecil dan tidak sama besar dengan <span class="frac"><span>1</span><span>2</span></span>.';
     };
 }
 function setupMengurutkan() {
@@ -534,14 +534,14 @@ function setupCampuran() {
         }
 
         if (whole === 0) {
-            text.innerHTML = `${val}/4`;
+            text.innerHTML = `<span class="frac"><span>${val}</span><span>4</span></span>`;
             desc.innerHTML = `Belum sampai 1 utuh`;
         } else if (remainder === 0) {
-            text.innerHTML = `${val}/4 = ${whole}`;
+            text.innerHTML = `<span class="frac"><span>${val}</span><span>4</span></span> = ${whole}`;
             desc.innerHTML = `${whole} pizza utuh!`;
         } else {
-            text.innerHTML = `${val}/4 = ${whole} <sup>${remainder}</sup>/<sub>4</sub>`;
-            desc.innerHTML = `${whole} utuh dan ${remainder}/4 potong`;
+            text.innerHTML = `<span class="frac"><span>${val}</span><span>4</span></span> = ${whole} <span class="frac"><span>${remainder}</span><span>4</span></span>`;
+            desc.innerHTML = `${whole} utuh dan <span class="frac"><span>${remainder}</span><span>4</span></span> potong`;
         }
     }
 
@@ -556,6 +556,8 @@ function setupDesimal() {
     const slider = document.getElementById('desimalSlider');
     const grid = document.getElementById('desimalGrid');
     const text = document.getElementById('desimalText');
+    const desc = document.getElementById('desimalDesc');
+    const words = ["nol", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh"];
 
     function update() {
         const val = parseInt(slider.value);
@@ -569,7 +571,13 @@ function setupDesimal() {
             grid.appendChild(block);
         }
         
-        text.innerHTML = `${val}/10 = 0,${val}`;
+        if (val === 10) {
+            text.innerHTML = `<span class="frac"><span>10</span><span>10</span></span> = 1,0`;
+            if (desc) desc.innerHTML = `Dibaca: "Satu koma nol"`;
+        } else {
+            text.innerHTML = `<span class="frac"><span>${val}</span><span>10</span></span> = 0,${val}`;
+            if (desc) desc.innerHTML = `Dibaca: "Nol koma ${words[val]}"`;
+        }
     }
 
     slider.addEventListener('input', () => {
@@ -595,7 +603,7 @@ function setupPersen() {
             grid.appendChild(sq);
         }
         
-        text1.innerHTML = `${val}/100`;
+        text1.innerHTML = `<span class="frac"><span>${val}</span><span>100</span></span>`;
         text2.innerHTML = `${val}%`;
     }
 
@@ -736,20 +744,20 @@ function setupComparatorTool() {
         const textA = compA.options[compA.selectedIndex].text.split(' ')[0];
         const textB = compB.options[compB.selectedIndex].text.split(' ')[0];
 
-        leftWeight.textContent = textA;
-        rightWeight.textContent = textB;
+        leftWeight.innerHTML = textA.replace(/(\d+)\/(\d+)/, `<span class='frac'><span>$1</span><span>$2</span></span>`);
+        rightWeight.innerHTML = textB.replace(/(\d+)\/(\d+)/, `<span class='frac'><span>$1</span><span>$2</span></span>`);
 
         if (Math.abs(valA - valB) < 0.001) {
             compSymbol.textContent = '=';
-            compResult.textContent = `⚖️ ${textA} SAMA BESAR dengan ${textB} (${textA} = ${textB})`;
+            compResult.innerHTML = `⚖️ ${textA} SAMA BESAR dengan ${textB} (${textA} = ${textB})`.replace(/(\d+)\/(\d+)/g, `<span class='frac'><span>$1</span><span>$2</span></span>`);
             seesawBar.style.transform = 'rotate(0deg)';
         } else if (valA > valB) {
             compSymbol.textContent = '>';
-            compResult.textContent = `⚖️ ${textA} lebih BESAR dari ${textB} (${textA} > ${textB})`;
+            compResult.innerHTML = `⚖️ ${textA} lebih BESAR dari ${textB} (${textA} > ${textB})`.replace(/(\d+)\/(\d+)/g, `<span class='frac'><span>$1</span><span>$2</span></span>`);
             seesawBar.style.transform = 'rotate(-12deg)';
         } else {
             compSymbol.textContent = '<';
-            compResult.textContent = `⚖️ ${textA} lebih KECIL dari ${textB} (${textA} < ${textB})`;
+            compResult.innerHTML = `⚖️ ${textA} lebih KECIL dari ${textB} (${textA} < ${textB})`.replace(/(\d+)\/(\d+)/g, `<span class='frac'><span>$1</span><span>$2</span></span>`);
             seesawBar.style.transform = 'rotate(12deg)';
         }
     }
@@ -1061,14 +1069,14 @@ function startBalloonGame() {
     if (state.balloonInterval) clearInterval(state.balloonInterval);
 
     const balloonPool = [
-        { label: "2/4", isEquiv: true, bg: "#EF4444" },
-        { label: "3/6", isEquiv: true, bg: "#3B82F6" },
-        { label: "4/8", isEquiv: true, bg: "#10B981" },
-        { label: "5/10", isEquiv: true, bg: "#8B5CF6" },
-        { label: "1/3", isEquiv: false, bg: "#F59E0B" },
-        { label: "3/4", isEquiv: false, bg: "#EC4899" },
-        { label: "2/5", isEquiv: false, bg: "#06B6D4" },
-        { label: "1/4", isEquiv: false, bg: "#64748B" }
+        { label: "<span class=\'frac\'><span>2</span><span>4</span></span>", isEquiv: true, bg: "#EF4444" },
+        { label: "<span class=\'frac\'><span>3</span><span>6</span></span>", isEquiv: true, bg: "#3B82F6" },
+        { label: "<span class=\'frac\'><span>4</span><span>8</span></span>", isEquiv: true, bg: "#10B981" },
+        { label: "<span class=\'frac\'><span>5</span><span>10</span></span>", isEquiv: true, bg: "#8B5CF6" },
+        { label: "<span class=\'frac\'><span>1</span><span>3</span></span>", isEquiv: false, bg: "#F59E0B" },
+        { label: "<span class=\'frac\'><span>3</span><span>4</span></span>", isEquiv: false, bg: "#EC4899" },
+        { label: "<span class=\'frac\'><span>2</span><span>5</span></span>", isEquiv: false, bg: "#06B6D4" },
+        { label: "<span class=\'frac\'><span>1</span><span>4</span></span>", isEquiv: false, bg: "#64748B" }
     ];
 
     function spawnBalloon() {
@@ -1114,14 +1122,14 @@ function initMemoryGame() {
     document.getElementById('memoryWinMsg').textContent = '';
 
     const cards = [
-        { id: 1, pair: '1/2', text: '1/2' },
-        { id: 2, pair: '1/2', text: '🌓 Setengah' },
-        { id: 3, pair: '1/4', text: '1/4' },
-        { id: 4, pair: '1/4', text: '🍕 1 dari 4' },
-        { id: 5, pair: '3/4', text: '3/4' },
-        { id: 6, pair: '3/4', text: '💯 75%' },
-        { id: 7, pair: '1/3', text: '1/3' },
-        { id: 8, pair: '1/3', text: '🍰 1 dari 3' }
+        { id: 1, pair: '<span class=\'frac\'><span>1</span><span>2</span></span>', text: '<span class=\'frac\'><span>1</span><span>2</span></span>' },
+        { id: 2, pair: '<span class=\'frac\'><span>1</span><span>2</span></span>', text: '🌓 Setengah' },
+        { id: 3, pair: '<span class=\'frac\'><span>1</span><span>4</span></span>', text: '<span class=\'frac\'><span>1</span><span>4</span></span>' },
+        { id: 4, pair: '<span class=\'frac\'><span>1</span><span>4</span></span>', text: '🍕 1 dari 4' },
+        { id: 5, pair: '<span class=\'frac\'><span>3</span><span>4</span></span>', text: '<span class=\'frac\'><span>3</span><span>4</span></span>' },
+        { id: 6, pair: '<span class=\'frac\'><span>3</span><span>4</span></span>', text: '💯 75%' },
+        { id: 7, pair: '<span class=\'frac\'><span>1</span><span>3</span></span>', text: '<span class=\'frac\'><span>1</span><span>3</span></span>' },
+        { id: 8, pair: '<span class=\'frac\'><span>1</span><span>3</span></span>', text: '🍰 1 dari 3' }
     ];
 
     const shuffled = cards.sort(() => 0.5 - Math.random());
@@ -1402,7 +1410,7 @@ document.getElementById('btnStartExam').addEventListener('click', () => {
     if (nameInput) {
         state.currentExamStudentName = nameInput.value.trim();
     } else {
-        state.currentExamStudentName = 'Siswa Kelas 4';
+        state.currentExamStudentName = 'Siswa';
     }
     
     startEvaluation();
@@ -1504,7 +1512,7 @@ function finishEvaluation() {
     document.getElementById('certificateSection').style.display = 'block';
 
     // Populate Certificate
-    document.getElementById('certStudentName').textContent = state.currentExamStudentName || 'Siswa Kelas 4';
+    document.getElementById('certStudentName').textContent = state.currentExamStudentName || 'Siswa';
 
     let predikat = 'SANGAT MEMUASKAN (ISTIMEWA)';
     if (state.evaluasiScore < 70) predikat = 'CUKUP BAIK';
@@ -1561,3 +1569,5 @@ function restartEvaluation() {
     document.getElementById('evaluasiReviewSection').style.display = 'none';
     document.getElementById('evaluasiIntroCard').style.display = 'block';
 }
+
+

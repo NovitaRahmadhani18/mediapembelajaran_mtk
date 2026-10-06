@@ -1,4 +1,4 @@
-// Enhanced Data Model for Multimedia Pembelajaran Interaktif Pecahan Kelas 4 SD
+// Enhanced Data Model for Multimedia Pembelajaran Interaktif Pecahan
 
 const APP_DATA = {
     characters: [
@@ -59,7 +59,7 @@ const APP_DATA = {
     ],
 
     cptp: {
-        kurikulum: "Kurikulum Merdeka - Matematika (Kelas 4 SD)",
+        kurikulum: "Kurikulum Merdeka - Matematika",
         elemen: "Bilangan (Pecahan Sederhana)",
         capaianPembelajaran: "Peserta didik dapat memahami dan membandingkan pecahan senilai, pecahan biasa dan pecahan campuran, serta mengenali pecahan desimal persepuluhan dan perseratusan, serta menghubungkan pecahan desimal dengan persen.",
         tujuanPembelajaran: [
@@ -143,7 +143,7 @@ const APP_DATA = {
                     <div class="story-bubble">
                         <div class="story-avatar">🍕</div>
                         <div class="story-text">
-                            <strong>Cerita Dino & Mimi:</strong> "Dino punya <strong>1 loyang pizza utuh</strong>. Dino memotongnya menjadi <strong>4 potong sama besar</strong>, lalu memakan <strong>1 potong</strong>. Nah, bagian yang dimakan Dino adalah <strong>1/4 (satu per empat)</strong>!"
+                            <strong>Cerita Dino & Mimi:</strong> "Dino punya <strong>1 loyang pizza utuh</strong>. Dino memotongnya menjadi <strong>4 potong sama besar</strong>, lalu memakan <strong>1 potong</strong>. Nah, bagian yang dimakan Dino adalah <strong><span class=\'frac\'><span>1</span><span>4</span></span> (satu per empat)</strong>!"
                         </div>
                     </div>
 
@@ -211,16 +211,16 @@ const APP_DATA = {
                         <!-- Left Side: Visual Bars -->
                         <div style="flex: 1; min-width: 300px; background: #F0F9FF; border-radius: 16px; padding: 24px; border: 2px solid #BAE6FD;">
                             <div style="font-size: 2rem; font-weight: 800; color: #0369A1; margin-bottom: 20px;">
-                                1/2 = 2/4
+                                <span class=\'frac\'><span>1</span><span>2</span></span> = <span class=\'frac\'><span>2</span><span>4</span></span>
                             </div>
                             
-                            <!-- Bar 1/2 -->
+                            <!-- Bar <span class=\'frac\'><span>1</span><span>2</span></span> -->
                             <div style="display: flex; width: 100%; height: 40px; border: 2px solid #1E293B; border-radius: 8px; overflow: hidden; margin-bottom: 10px;">
                                 <div style="flex: 1; background: #F59E0B; border-right: 2px solid #1E293B;"></div>
                                 <div style="flex: 1; background: white;"></div>
                             </div>
                             
-                            <!-- Bar 2/4 -->
+                            <!-- Bar <span class=\'frac\'><span>2</span><span>4</span></span> -->
                             <div style="display: flex; width: 100%; height: 40px; border: 2px solid #1E293B; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
                                 <div style="flex: 1; background: #F59E0B; border-right: 2px solid #1E293B;"></div>
                                 <div style="flex: 1; background: #F59E0B; border-right: 2px solid #1E293B;"></div>
@@ -246,7 +246,7 @@ const APP_DATA = {
                             </div>
                             
                             <div style="background: white; padding: 12px 16px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                                3) Panjangnya sama! <strong>1/2 = 2/4</strong>, nilainya sama besar.
+                                3) Panjangnya sama! <strong><span class=\'frac\'><span>1</span><span>2</span></span> = <span class=\'frac\'><span>2</span><span>4</span></span></strong>, nilainya sama besar.
                             </div>
                         </div>
 
@@ -254,11 +254,11 @@ const APP_DATA = {
 
                     <!-- Mini Exercise -->
                     <div style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed #CBD5E1;">
-                        <p style="font-weight: 800; color: #1E293B; font-size: 1.1rem; margin-bottom: 12px;">Latihan: Pecahan senilai dengan 1/2 ialah ...</p>
+                        <p style="font-weight: 800; color: #1E293B; font-size: 1.1rem; margin-bottom: 12px;">Latihan: Pecahan senilai dengan <span class=\'frac\'><span>1</span><span>2</span></span> ialah ...</p>
                         
                         <div style="display: flex; gap: 12px;">
-                            <button id="btnLatihanBenar" style="background: white; border: 2px dashed #94A3B8; border-radius: 12px; padding: 10px 24px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.2s;">2/4</button>
-                            <button id="btnLatihanSalah" style="background: white; border: 2px dashed #94A3B8; border-radius: 12px; padding: 10px 24px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.2s;">1/4</button>
+                            <button id="btnLatihanBenar" style="background: white; border: 2px dashed #94A3B8; border-radius: 12px; padding: 10px 24px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.2s;"><span class=\'frac\'><span>2</span><span>4</span></span></button>
+                            <button id="btnLatihanSalah" style="background: white; border: 2px dashed #94A3B8; border-radius: 12px; padding: 10px 24px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.2s;"><span class=\'frac\'><span>1</span><span>4</span></span></button>
                         </div>
                         <div id="latihanFeedback" style="margin-top: 16px; font-weight: 800; font-size: 1.1rem; min-height: 24px;"></div>
                     </div>
@@ -277,13 +277,13 @@ const APP_DATA = {
                             <div class="rule-icon">🟢</div>
                             <h4>Aturan 1: Bawahnya Sama (Penyebut Sama)</h4>
                             <p>Tinggal lihat angka atasnya! Siapa yang angkanya lebih besar, dialah pemenangnya.</p>
-                            <div class="example-pill">Contoh: <strong>3/5 > 1/5</strong> (karena 3 lebih banyak dari 1)</div>
+                            <div class="example-pill">Contoh: <strong><span class=\'frac\'><span>3</span><span>5</span></span> > <span class=\'frac\'><span>1</span><span>5</span></span></strong> (karena 3 lebih banyak dari 1)</div>
                         </div>
                         <div class="rule-card">
                             <div class="rule-icon">⚡</div>
                             <h4>Aturan 2: Bawahnya Beda (Trik Silang Kupu-Kupu!)</h4>
                             <p>Kalikan silang atas kiri &times; bawah kanan, lalu atas kanan &times; bawah kiri.</p>
-                            <div class="example-pill">Bandingkan <strong>2/3</strong> dengan <strong>3/4</strong><br>2&times;4=<strong>8</strong> vs 3&times;3=<strong>9</strong> &rarr; Karena 8 < 9, maka <strong>2/3 < 3/4</strong>!</div>
+                            <div class="example-pill">Bandingkan <strong><span class=\'frac\'><span>2</span><span>3</span></span></strong> dengan <strong><span class=\'frac\'><span>3</span><span>4</span></span></strong><br>2&times;4=<strong>8</strong> vs 3&times;3=<strong>9</strong> &rarr; Karena 8 < 9, maka <strong><span class=\'frac\'><span>2</span><span>3</span></span> < <span class=\'frac\'><span>3</span><span>4</span></span></strong>!</div>
                         </div>
                     </div>
 
@@ -318,12 +318,12 @@ const APP_DATA = {
                         </div>
 
                         <div class="seesaw-animation-bar" id="seesawBar">
-                            <div class="seesaw-weight left-weight" id="leftWeight">1/2</div>
+                            <div class="seesaw-weight left-weight" id="leftWeight"><span class=\'frac\'><span>1</span><span>2</span></span></div>
                             <div class="seesaw-pivot">▲</div>
-                            <div class="seesaw-weight right-weight" id="rightWeight">3/4</div>
+                            <div class="seesaw-weight right-weight" id="rightWeight"><span class=\'frac\'><span>3</span><span>4</span></span></div>
                         </div>
 
-                        <div class="result-banner" id="compResult">1/2 lebih KECIL dari 3/4 (1/2 < 3/4)</div>
+                        <div class="result-banner" id="compResult"><span class=\'frac\'><span>1</span><span>2</span></span> lebih KECIL dari <span class=\'frac\'><span>3</span><span>4</span></span> (<span class=\'frac\'><span>1</span><span>2</span></span> < <span class=\'frac\'><span>3</span><span>4</span></span>)</div>
                     </div>
                 </div>
             `
@@ -356,10 +356,10 @@ const APP_DATA = {
 
                         <div style="background: #F3E8FF; border: 2px solid #D8B4FE; padding: 16px; border-radius: 16px; display: inline-block;">
                             <div style="font-size: 2.5rem; font-family: 'Fredoka', cursive; color: #7E22CE;" id="campuranText">
-                                5/4 = 1 1/4
+                                <span class=\'frac\'><span>5</span><span>4</span></span> = 1 <span class=\'frac\'><span>1</span><span>4</span></span>
                             </div>
                             <div style="color: #9333EA; font-weight: 600; margin-top: 8px;" id="campuranDesc">
-                                1 utuh dan 1/4 potong
+                                1 utuh dan <span class=\'frac\'><span>1</span><span>4</span></span> potong
                             </div>
                         </div>
                     </div>
@@ -393,9 +393,9 @@ const APP_DATA = {
 
                         <div style="background: #DBEAFE; border: 2px solid #93C5FD; padding: 16px; border-radius: 16px; display: inline-block; min-width: 200px;">
                             <div style="font-size: 2.5rem; font-family: 'Fredoka', cursive; color: #1D4ED8;" id="desimalText">
-                                5/10 = 0,5
+                                <span class='frac'><span>5</span><span>10</span></span> = 0,5
                             </div>
-                            <div style="color: #2563EB; font-weight: 600; margin-top: 8px;">
+                            <div id="desimalDesc" style="color: #2563EB; font-weight: 600; margin-top: 8px;">
                                 Dibaca: "Nol koma lima"
                             </div>
                         </div>
@@ -412,7 +412,7 @@ const APP_DATA = {
                 <div class="materi-container">
                     <div class="story-bubble" style="background: #FDF2F8; border-left: 5px solid #DB2777;">
                         <div class="story-text" style="width: 100%;">
-                            Persen berarti <strong>per seratus</strong> (/100). 50% sama saja dengan 50/100, atau setengahnya!
+                            Persen berarti <strong>per seratus</strong> (/100). 50% sama saja dengan <span class=\'frac\'><span>50</span><span>100</span></span>, atau setengahnya!
                         </div>
                     </div>
                     <div style="margin-top: 24px; border: 2px dashed #CBD5E1; padding: 24px; border-radius: 20px; text-align: center; background: white;">
@@ -432,7 +432,7 @@ const APP_DATA = {
 
                         <div style="background: #FCE7F3; border: 2px solid #F9A8D4; padding: 16px; border-radius: 16px; display: inline-flex; align-items: center; gap: 20px;">
                             <div style="font-size: 2.2rem; font-family: 'Fredoka', cursive; color: #BE185D;" id="persenText1">
-                                25/100
+                                <span class=\'frac\'><span>25</span><span>100</span></span>
                             </div>
                             <div style="font-size: 2.2rem; font-weight: 900; color: #DB2777;">=</div>
                             <div style="font-size: 2.8rem; font-family: 'Fredoka', cursive; color: #BE185D;" id="persenText2">
@@ -455,13 +455,13 @@ const APP_DATA = {
                             <div class="rule-icon">➕</div>
                             <h4>Penjumlahan (Penyebut Sama)</h4>
                             <p>Jika angka bawahnya (penyebut) sudah SAMA, kamu hanya perlu menjumlahkan angka atasnya (pembilang) saja!</p>
-                            <div class="example-pill">Contoh: <strong>1/5 + 2/5 = 3/5</strong><br><small>1 potong + 2 potong = 3 potong (ukuran tetap per lima)</small></div>
+                            <div class="example-pill">Contoh: <strong><span class=\'frac\'><span>1</span><span>5</span></span> + <span class=\'frac\'><span>2</span><span>5</span></span> = <span class=\'frac\'><span>3</span><span>5</span></span></strong><br><small>1 potong + 2 potong = 3 potong (ukuran tetap per lima)</small></div>
                         </div>
                         <div class="rule-card" style="border-top-color: #EF4444;">
                             <div class="rule-icon">➖</div>
                             <h4>Pengurangan (Penyebut Sama)</h4>
                             <p>Sama seperti penjumlahan, jika bawahnya sudah sama, cukup kurangkan angka yang di atas!</p>
-                            <div class="example-pill">Contoh: <strong>4/7 - 1/7 = 3/7</strong><br><small>4 potong dikurangi 1 potong tinggal 3 potong</small></div>
+                            <div class="example-pill">Contoh: <strong><span class=\'frac\'><span>4</span><span>7</span></span> - <span class=\'frac\'><span>1</span><span>7</span></span> = <span class=\'frac\'><span>3</span><span>7</span></span></strong><br><small>4 potong dikurangi 1 potong tinggal 3 potong</small></div>
                         </div>
                     </div>
                     <div style="margin-top: 24px; border: 2px dashed #CBD5E1; padding: 24px; border-radius: 20px; text-align: center; background: white;">
@@ -511,7 +511,7 @@ const APP_DATA = {
                 <div class="materi-container">
                     <div class="story-bubble" style="background: #EEF2FF; border-left: 5px solid #6366F1;">
                         <div class="story-text" style="width: 100%;">
-                            <strong>Bayangkan penggaris!</strong> Pecahan biasa (seperti 1/2, 1/4, 3/4) letaknya selalu di antara angka <strong>0</strong> dan <strong>1</strong>.
+                            <strong>Bayangkan penggaris!</strong> Pecahan biasa (seperti <span class=\'frac\'><span>1</span><span>2</span></span>, <span class=\'frac\'><span>1</span><span>4</span></span>, <span class=\'frac\'><span>3</span><span>4</span></span>) letaknya selalu di antara angka <strong>0</strong> dan <strong>1</strong>.
                         </div>
                     </div>
                     <div class="concept-cards-row" style="margin-top: 20px;">
@@ -521,16 +521,16 @@ const APP_DATA = {
                                 <div style="position: absolute; left: 0%; top: 25px; font-weight: 800; transform: translateX(-50%);">0</div>
                                 
                                 <div style="position: absolute; left: 25%; top: -5px; width: 4px; height: 20px; background: #3B82F6;"></div>
-                                <div style="position: absolute; left: 25%; top: 25px; font-weight: 800; color: #3B82F6; transform: translateX(-50%);">1/4</div>
+                                <div style="position: absolute; left: 25%; top: 25px; font-weight: 800; color: #3B82F6; transform: translateX(-50%);"><span class=\'frac\'><span>1</span><span>4</span></span></div>
                                 
                                 <div style="position: absolute; left: 50%; top: -5px; width: 4px; height: 20px; background: #10B981;"></div>
-                                <div style="position: absolute; left: 50%; top: 25px; font-weight: 800; color: #10B981; transform: translateX(-50%);">2/4 (atau 1/2)</div>
+                                <div style="position: absolute; left: 50%; top: 25px; font-weight: 800; color: #10B981; transform: translateX(-50%);"><span class=\'frac\'><span>2</span><span>4</span></span> (atau <span class=\'frac\'><span>1</span><span>2</span></span>)</div>
                                 
                                 <div style="position: absolute; left: 75%; top: -5px; width: 4px; height: 20px; background: #F59E0B;"></div>
-                                <div style="position: absolute; left: 75%; top: 25px; font-weight: 800; color: #F59E0B; transform: translateX(-50%);">3/4</div>
+                                <div style="position: absolute; left: 75%; top: 25px; font-weight: 800; color: #F59E0B; transform: translateX(-50%);"><span class=\'frac\'><span>3</span><span>4</span></span></div>
                                 
                                 <div style="position: absolute; left: 100%; top: -10px; width: 4px; height: 30px; background: #1E293B;"></div>
-                                <div style="position: absolute; left: 100%; top: 25px; font-weight: 800; transform: translateX(-50%);">1 (atau 4/4)</div>
+                                <div style="position: absolute; left: 100%; top: 25px; font-weight: 800; transform: translateX(-50%);">1 (atau <span class=\'frac\'><span>4</span><span>4</span></span>)</div>
                             </div>
                             <p style="margin-top: 50px; font-size: 1.1rem; color: #475569;">Semakin ke kanan posisinya, maka nilai pecahannya akan <strong>semakin besar</strong>!</p>
                         </div>
@@ -550,13 +550,13 @@ const APP_DATA = {
                             <div class="rule-icon">🔽🔼</div>
                             <h4>Penyebutnya Sama?</h4>
                             <p>Sangat gampang! Tinggal urutkan saja angka pembilangnya (yang di atas) dari yang paling kecil ke paling besar.</p>
-                            <div class="example-pill">Urutkan: <strong>3/7, 1/7, 5/7, 2/7</strong><br>Hasil: <strong>1/7, 2/7, 3/7, 5/7</strong></div>
+                            <div class="example-pill">Urutkan: <strong><span class=\'frac\'><span>3</span><span>7</span></span>, <span class=\'frac\'><span>1</span><span>7</span></span>, <span class=\'frac\'><span>5</span><span>7</span></span>, <span class=\'frac\'><span>2</span><span>7</span></span></strong><br>Hasil: <strong><span class=\'frac\'><span>1</span><span>7</span></span>, <span class=\'frac\'><span>2</span><span>7</span></span>, <span class=\'frac\'><span>3</span><span>7</span></span>, <span class=\'frac\'><span>5</span><span>7</span></span></strong></div>
                         </div>
                         <div class="rule-card" style="border-top-color: #8B5CF6;">
                             <div class="rule-icon">🎨</div>
                             <h4>Gunakan Gambar!</h4>
                             <p>Jika masih bingung, gambarlah pecahannya! Potongan pizza mana yang paling sedikit warna/isinya, itu yang terkecil!</p>
-                            <div class="example-pill">Bayangkan: <strong>1/2</strong> (setengah pizza) vs <strong>1/4</strong> (sepotong kecil pizza). Maka <strong>1/4</strong> lebih kecil!</div>
+                            <div class="example-pill">Bayangkan: <strong><span class=\'frac\'><span>1</span><span>2</span></span></strong> (setengah pizza) vs <strong><span class=\'frac\'><span>1</span><span>4</span></span></strong> (sepotong kecil pizza). Maka <strong><span class=\'frac\'><span>1</span><span>4</span></span></strong> lebih kecil!</div>
                         </div>
                     </div>
                     
@@ -620,7 +620,7 @@ const APP_DATA = {
             embedUrl: "https://www.youtube-nocookie.com/embed/0hPRfqPFtt8",
             points: [
                 "Kalikan pembilang dan penyebut dengan angka yang sama.",
-                "1/2 sama besarnya dengan 2/4, 3/6, dan 4/8.",
+                "<span class=\'frac\'><span>1</span><span>2</span></span> sama besarnya dengan <span class=\'frac\'><span>2</span><span>4</span></span>, <span class=\'frac\'><span>3</span><span>6</span></span>, dan <span class=\'frac\'><span>4</span><span>8</span></span>.",
                 "Gunakan pembagian untuk menyederhanakan pecahan."
             ]
         },
@@ -646,15 +646,15 @@ const APP_DATA = {
             question: "Perhatikan gambar pizza di bawah! Berapakah nilai pecahan dari potongan yang diwarnai merah?",
             totalSlices: 4,
             shadedSlices: 3,
-            options: ["1/4 (Satu per Empat)", "2/4 (Dua per Empat)", "3/4 (Tiga per Empat)", "4/3 (Empat per Tiga)"],
+            options: ["1/4 (Satu per Empat)", "<span class=\'frac\'><span>2</span><span>4</span></span> (Dua per Empat)", "3/4 (Tiga per Empat)", "<span class=\'frac\'><span>4</span><span>3</span></span> (Empat per Tiga)"],
             correct: 2,
             hint: "Hitung potongan merah (ada 3) lalu pasangkan dengan total semua potongan (ada 4).",
-            explanation: "Ada 3 potong berwarna merah dari total 4 potongan sama besar, maka nilainya adalah 3/4."
+            explanation: "Ada 3 potong berwarna merah dari total 4 potongan sama besar, maka nilainya adalah <span class=\'frac\'><span>3</span><span>4</span></span>."
         },
         {
             id: 2,
             type: 'text',
-            question: "Pada pecahan 5/8, angka 5 disebut sebagai...",
+            question: "Pada pecahan <span class=\'frac\'><span>5</span><span>8</span></span>, angka 5 disebut sebagai...",
             options: ["Pembilang (Atas)", "Penyebut (Bawah)", "Pecahan Campuran", "Hasil Bagi"],
             correct: 0,
             hint: "Angka atas adalah bagian yang diambil/dimakan.",
@@ -663,78 +663,78 @@ const APP_DATA = {
         {
             id: 3,
             type: 'visual',
-            question: "Manakah pecahan di bawah ini yang SENILAI dengan 1/2?",
+            question: "Manakah pecahan di bawah ini yang SENILAI dengan <span class=\'frac\'><span>1</span><span>2</span></span>?",
             totalSlices: 6,
             shadedSlices: 3,
-            options: ["2/5", "3/6", "1/4", "3/8"],
+            options: ["<span class=\'frac\'><span>2</span><span>5</span></span>", "<span class=\'frac\'><span>3</span><span>6</span></span>", "<span class=\'frac\'><span>1</span><span>4</span></span>", "<span class=\'frac\'><span>3</span><span>8</span></span>"],
             correct: 1,
             hint: "Coba kalikan atas dan bawah dengan angka 3! 1x3 / 2x3 = ?",
-            explanation: "1/2 dikalikan 3/3 = 3/6. Jadi 1/2 senilai dengan 3/6."
+            explanation: "<span class=\'frac\'><span>1</span><span>2</span></span> dikalikan <span class=\'frac\'><span>3</span><span>3</span></span> = <span class=\'frac\'><span>3</span><span>6</span></span>. Jadi <span class=\'frac\'><span>1</span><span>2</span></span> senilai dengan <span class=\'frac\'><span>3</span><span>6</span></span>."
         },
         {
             id: 4,
             type: 'compare',
-            question: "Bandingkan kedua pecahan berikut: 2/7 ... 5/7. Tanda yang tepat adalah...",
+            question: "Bandingkan kedua pecahan berikut: <span class=\'frac\'><span>2</span><span>7</span></span> ... <span class=\'frac\'><span>5</span><span>7</span></span>. Tanda yang tepat adalah...",
             options: ["> (Lebih besar)", "< (Lebih kecil)", "= (Sama dengan)", ">= (Lebih besar sama dengan)"],
             correct: 1,
             hint: "Karena penyebutnya sama (7), bandingkan angka 2 dan 5.",
-            explanation: "Karena 2 lebih kecil dari 5, maka 2/7 < 5/7."
+            explanation: "Karena 2 lebih kecil dari 5, maka <span class=\'frac\'><span>2</span><span>7</span></span> < <span class=\'frac\'><span>5</span><span>7</span></span>."
         },
         {
             id: 5,
             type: 'text',
-            question: "Bentuk pecahan campuran dari 7/3 adalah...",
-            options: ["2 1/3", "1 4/3", "2 2/3", "3 1/3"],
+            question: "Bentuk pecahan campuran dari <span class=\'frac\'><span>7</span><span>3</span></span> adalah...",
+            options: ["2 <span class=\'frac\'><span>1</span><span>3</span></span>", "1 <span class=\'frac\'><span>4</span><span>3</span></span>", "2 <span class=\'frac\'><span>2</span><span>3</span></span>", "3 <span class=\'frac\'><span>1</span><span>3</span></span>"],
             correct: 0,
             hint: "7 dibagi 3 dapat 2, sisa 1.",
-            explanation: "7 : 3 = 2 sisa 1. Jadi bentuk campurannya adalah 2 1/3."
+            explanation: "7 : 3 = 2 sisa 1. Jadi bentuk campurannya adalah 2 <span class=\'frac\'><span>1</span><span>3</span></span>."
         },
         {
             id: 6,
             type: 'visual',
-            question: "Pecahan 1/2 jika diubah ke dalam bentuk persen (%) adalah...",
+            question: "Pecahan <span class=\'frac\'><span>1</span><span>2</span></span> jika diubah ke dalam bentuk persen (%) adalah...",
             totalSlices: 2,
             shadedSlices: 1,
             options: ["25%", "50%", "75%", "100%"],
             correct: 1,
             hint: "Setengah dari 100 adalah 50.",
-            explanation: "1/2 = 50/100 = 50%."
+            explanation: "<span class=\'frac\'><span>1</span><span>2</span></span> = <span class=\'frac\'><span>50</span><span>100</span></span> = 50%."
         },
         {
             id: 7,
             type: 'text',
             question: "Ibu membagi semangka menjadi 8 potong sama besar. Dimakan Budi 2 potong dan dimakan Ani 2 potong. Berapa bagian semangka yang sudah dimakan?",
-            options: ["2/8 bagian", "4/8 bagian", "6/8 bagian", "8/8 bagian"],
+            options: ["<span class=\'frac\'><span>2</span><span>8</span></span> bagian", "<span class=\'frac\'><span>4</span><span>8</span></span> bagian", "<span class=\'frac\'><span>6</span><span>8</span></span> bagian", "<span class=\'frac\'><span>8</span><span>8</span></span> bagian"],
             correct: 1,
             hint: "Tambahkan potongan Budi (2) + Ani (2) = 4 potong.",
-            explanation: "2 potong + 2 potong = 4 potong dari total 8 potong = 4/8 bagian (senilai dengan 1/2)."
+            explanation: "2 potong + 2 potong = 4 potong dari total 8 potong = <span class=\'frac\'><span>4</span><span>8</span></span> bagian (senilai dengan <span class=\'frac\'><span>1</span><span>2</span></span>)."
         },
         {
             id: 8,
             type: 'text',
             question: "Manakah perbandingan pecahan yang BENAR menggunakan trik silang?",
-            options: ["1/3 > 2/3", "3/4 > 1/2", "1/5 > 4/5", "2/4 = 3/4"],
+            options: ["<span class=\'frac\'><span>1</span><span>3</span></span> > <span class=\'frac\'><span>2</span><span>3</span></span>", "<span class=\'frac\'><span>3</span><span>4</span></span> > <span class=\'frac\'><span>1</span><span>2</span></span>", "<span class=\'frac\'><span>1</span><span>5</span></span> > <span class=\'frac\'><span>4</span><span>5</span></span>", "<span class=\'frac\'><span>2</span><span>4</span></span> = <span class=\'frac\'><span>3</span><span>4</span></span>"],
             correct: 1,
-            hint: "3/4 (0,75) lebih besar dari 1/2 (0,50).",
-            explanation: "3x2 = 6, 4x1 = 4. Karena 6 > 4, maka 3/4 > 1/2 adalah BENAR."
+            hint: "<span class=\'frac\'><span>3</span><span>4</span></span> (0,75) lebih besar dari <span class=\'frac\'><span>1</span><span>2</span></span> (0,50).",
+            explanation: "3x2 = 6, 4x1 = 4. Karena 6 > 4, maka <span class=\'frac\'><span>3</span><span>4</span></span> > <span class=\'frac\'><span>1</span><span>2</span></span> adalah BENAR."
         },
         {
             id: 9,
             type: 'text',
-            question: "Bentuk desimal dari pecahan 1/4 adalah...",
+            question: "Bentuk desimal dari pecahan <span class=\'frac\'><span>1</span><span>4</span></span> adalah...",
             options: ["0,5", "0,25", "0,75", "0,14"],
             correct: 1,
-            hint: "1/4 sama dengan 25/100.",
-            explanation: "1/4 dikali 25/25 menjadi 25/100, yang dalam desimal ditulis 0,25."
+            hint: "<span class=\'frac\'><span>1</span><span>4</span></span> sama dengan <span class=\'frac\'><span>25</span><span>100</span></span>.",
+            explanation: "<span class=\'frac\'><span>1</span><span>4</span></span> dikali <span class=\'frac\'><span>25</span><span>25</span></span> menjadi <span class=\'frac\'><span>25</span><span>100</span></span>, yang dalam desimal ditulis 0,25."
         },
         {
             id: 10,
             type: 'text',
-            question: "Manakah pecahan yang LEBIH KECIL dari 1/2?",
-            options: ["2/3", "3/4", "1/3", "4/8"],
+            question: "Manakah pecahan yang LEBIH KECIL dari <span class=\'frac\'><span>1</span><span>2</span></span>?",
+            options: ["<span class=\'frac\'><span>2</span><span>3</span></span>", "<span class=\'frac\'><span>3</span><span>4</span></span>", "<span class=\'frac\'><span>1</span><span>3</span></span>", "<span class=\'frac\'><span>4</span><span>8</span></span>"],
             correct: 2,
-            hint: "Bandingkan masing-masing pecahan dengan 1/2. Mana yang kurang dari separuh?",
-            explanation: "1/3 lebih kecil dari 1/2. Jika memakai trik silang: 1x2 = 2 dan 3x1 = 3 (2 < 3, jadi 1/3 < 1/2)."
+            hint: "Bandingkan masing-masing pecahan dengan <span class=\'frac\'><span>1</span><span>2</span></span>. Mana yang kurang dari separuh?",
+            explanation: "<span class=\'frac\'><span>1</span><span>3</span></span> lebih kecil dari <span class=\'frac\'><span>1</span><span>2</span></span>. Jika memakai trik silang: 1x2 = 2 dan 3x1 = 3 (2 < 3, jadi <span class=\'frac\'><span>1</span><span>3</span></span> < <span class=\'frac\'><span>1</span><span>2</span></span>)."
         }
     ],
 
@@ -742,14 +742,14 @@ const APP_DATA = {
         {
             id: 1,
             q: "Sebuah pizza dipotong menjadi 6 bagian sama besar. Rina memakan 2 bagian. Bagian pizza yang dimakan Rina bernilai...",
-            options: ["2/6", "4/6", "6/2", "1/6"],
+            options: ["<span class=\'frac\'><span>2</span><span>6</span></span>", "<span class=\'frac\'><span>4</span><span>6</span></span>", "<span class=\'frac\'><span>6</span><span>2</span></span>", "<span class=\'frac\'><span>1</span><span>6</span></span>"],
             answer: 0,
             point: 10,
-            explanation: "Rina memakan 2 bagian dari total 6 bagian, sehingga bentuk pecahannya adalah 2/6."
+            explanation: "Rina memakan 2 bagian dari total 6 bagian, sehingga bentuk pecahannya adalah <span class=\'frac\'><span>2</span><span>6</span></span>."
         },
         {
             id: 2,
-            q: "Pada pecahan 3/10, angka 10 disebut...",
+            q: "Pada pecahan <span class=\'frac\'><span>3</span><span>10</span></span>, angka 10 disebut...",
             options: ["Pembilang", "Penyebut", "Pecahan Desimal", "Hasil Kali"],
             answer: 1,
             point: 10,
@@ -757,129 +757,131 @@ const APP_DATA = {
         },
         {
             id: 3,
-            q: "Pecahan berikut yang SENILAI dengan 3/4 adalah...",
-            options: ["6/8", "5/8", "6/10", "4/5"],
+            q: "Pecahan berikut yang SENILAI dengan <span class=\'frac\'><span>3</span><span>4</span></span> adalah...",
+            options: ["<span class=\'frac\'><span>6</span><span>8</span></span>", "<span class=\'frac\'><span>5</span><span>8</span></span>", "<span class=\'frac\'><span>6</span><span>10</span></span>", "<span class=\'frac\'><span>4</span><span>5</span></span>"],
             answer: 0,
             point: 10,
-            explanation: "Pecahan 3/4 jika dikalikan 2 pada pembilang dan penyebutnya (3x2=6, 4x2=8) akan menjadi 6/8."
+            explanation: "Pecahan <span class=\'frac\'><span>3</span><span>4</span></span> jika dikalikan 2 pada pembilang dan penyebutnya (3x2=6, 4x2=8) akan menjadi <span class=\'frac\'><span>6</span><span>8</span></span>."
         },
         {
             id: 4,
-            q: "Bentuk paling sederhana dari pecahan 8/12 adalah...",
-            options: ["4/6", "2/3", "1/2", "3/4"],
+            q: "Bentuk paling sederhana dari pecahan <span class=\'frac\'><span>8</span><span>12</span></span> adalah...",
+            options: ["<span class=\'frac\'><span>4</span><span>6</span></span>", "<span class=\'frac\'><span>2</span><span>3</span></span>", "<span class=\'frac\'><span>1</span><span>2</span></span>", "<span class=\'frac\'><span>3</span><span>4</span></span>"],
             answer: 1,
             point: 10,
-            explanation: "Pecahan 8/12 dapat disederhanakan dengan membagi pembilang dan penyebut dengan angka 4, sehingga menjadi 2/3."
+            explanation: "Pecahan <span class=\'frac\'><span>8</span><span>12</span></span> dapat disederhanakan dengan membagi pembilang dan penyebut dengan angka 4, sehingga menjadi <span class=\'frac\'><span>2</span><span>3</span></span>."
         },
         {
             id: 5,
-            q: "Tanda perbandingan yang tepat untuk 5/9 ... 3/9 adalah...",
+            q: "Tanda perbandingan yang tepat untuk <span class=\'frac\'><span>5</span><span>9</span></span> ... <span class=\'frac\'><span>3</span><span>9</span></span> adalah...",
             options: ["<", ">", "=", "+"],
             answer: 1,
             point: 10,
-            explanation: "Karena penyebutnya sama (9), kita cukup membandingkan pembilangnya. Karena 5 lebih besar dari 3, maka 5/9 > 3/9."
+            explanation: "Karena penyebutnya sama (9), kita cukup membandingkan pembilangnya. Karena 5 lebih besar dari 3, maka <span class=\'frac\'><span>5</span><span>9</span></span> > <span class=\'frac\'><span>3</span><span>9</span></span>."
         },
         {
             id: 6,
-            q: "Bandingkan pecahan 1/2 ... 2/3 dengan trik silang! Tanda yang tepat adalah...",
+            q: "Bandingkan pecahan <span class=\'frac\'><span>1</span><span>2</span></span> ... <span class=\'frac\'><span>2</span><span>3</span></span> dengan trik silang! Tanda yang tepat adalah...",
             options: [">", "<", "=", "&ge;"],
             answer: 1,
             point: 10,
-            explanation: "Dengan trik silang: 1x3 = 3 dan 2x2 = 4. Karena 3 < 4, maka 1/2 < 2/3."
+            explanation: "Dengan trik silang: 1x3 = 3 dan 2x2 = 4. Karena 3 < 4, maka <span class=\'frac\'><span>1</span><span>2</span></span> < <span class=\'frac\'><span>2</span><span>3</span></span>."
         },
         {
             id: 7,
-            q: "Urutan pecahan 1/4, 3/4, 2/4 dari yang TERKECIL adalah...",
-            options: ["1/4, 2/4, 3/4", "3/4, 2/4, 1/4", "2/4, 1/4, 3/4", "1/4, 3/4, 2/4"],
+            q: "Urutan pecahan <span class=\'frac\'><span>1</span><span>4</span></span>, <span class=\'frac\'><span>3</span><span>4</span></span>, <span class=\'frac\'><span>2</span><span>4</span></span> dari yang TERKECIL adalah...",
+            options: ["<span class=\'frac\'><span>1</span><span>4</span></span>, <span class=\'frac\'><span>2</span><span>4</span></span>, <span class=\'frac\'><span>3</span><span>4</span></span>", "<span class=\'frac\'><span>3</span><span>4</span></span>, <span class=\'frac\'><span>2</span><span>4</span></span>, <span class=\'frac\'><span>1</span><span>4</span></span>", "<span class=\'frac\'><span>2</span><span>4</span></span>, <span class=\'frac\'><span>1</span><span>4</span></span>, <span class=\'frac\'><span>3</span><span>4</span></span>", "<span class=\'frac\'><span>1</span><span>4</span></span>, <span class=\'frac\'><span>3</span><span>4</span></span>, <span class=\'frac\'><span>2</span><span>4</span></span>"],
             answer: 0,
             point: 10,
-            explanation: "Karena penyebutnya sama (4), kita cukup mengurutkan dari pembilang terkecil: 1, 2, lalu 3. Sehingga urutannya: 1/4, 2/4, 3/4."
+            explanation: "Karena penyebutnya sama (4), kita cukup mengurutkan dari pembilang terkecil: 1, 2, lalu 3. Sehingga urutannya: <span class=\'frac\'><span>1</span><span>4</span></span>, <span class=\'frac\'><span>2</span><span>4</span></span>, <span class=\'frac\'><span>3</span><span>4</span></span>."
         },
         {
             id: 8,
-            q: "Pecahan 9/4 jika diubah ke bentuk pecahan campuran adalah...",
-            options: ["2 1/4", "2 3/4", "1 5/4", "3 1/4"],
+            q: "Pecahan <span class=\'frac\'><span>9</span><span>4</span></span> jika diubah ke bentuk pecahan campuran adalah...",
+            options: ["2 <span class=\'frac\'><span>1</span><span>4</span></span>", "2 <span class=\'frac\'><span>3</span><span>4</span></span>", "1 <span class=\'frac\'><span>5</span><span>4</span></span>", "3 <span class=\'frac\'><span>1</span><span>4</span></span>"],
             answer: 0,
             point: 10,
-            explanation: "9 dibagi 4 hasilnya 2 sisa 1. Jadi, pecahan campurannya adalah 2 1/4."
+            explanation: "9 dibagi 4 hasilnya 2 sisa 1. Jadi, pecahan campurannya adalah 2 <span class=\'frac\'><span>1</span><span>4</span></span>."
         },
         {
             id: 9,
-            q: "Bentuk persen (%) dari pecahan 3/4 adalah...",
+            q: "Bentuk persen (%) dari pecahan <span class=\'frac\'><span>3</span><span>4</span></span> adalah...",
             options: ["25%", "50%", "75%", "100%"],
             answer: 2,
             point: 10,
-            explanation: "Pecahan 3/4 jika penyebutnya dijadikan 100 (dikalikan 25), pembilangnya juga dikali 25 menjadi 75. Maka 75/100 = 75%."
+            explanation: "Pecahan <span class=\'frac\'><span>3</span><span>4</span></span> jika penyebutnya dijadikan 100 (dikalikan 25), pembilangnya juga dikali 25 menjadi 75. Maka <span class=\'frac\'><span>75</span><span>100</span></span> = 75%."
         },
         {
             id: 10,
             q: "Doni memiliki 1 cokelat utuh berisi 10 baris. Diberikan ke adik 3 baris dan kakak 4 baris. Sisa cokelat Doni adalah...",
-            options: ["3/10", "7/10", "2/10", "5/10"],
+            options: ["<span class=\'frac\'><span>3</span><span>10</span></span>", "<span class=\'frac\'><span>7</span><span>10</span></span>", "<span class=\'frac\'><span>2</span><span>10</span></span>", "<span class=\'frac\'><span>5</span><span>10</span></span>"],
             answer: 0,
             point: 10,
-            explanation: "Sisa baris = 10 - 3 - 4 = 3 baris. Dari total 10 baris, sisa cokelatnya adalah 3/10."
+            explanation: "Sisa baris = 10 - 3 - 4 = 3 baris. Dari total 10 baris, sisa cokelatnya adalah <span class=\'frac\'><span>3</span><span>10</span></span>."
         }
     ],
 
     duelQuestions: [
         {
-            q: "Manakah pecahan yang senilai dengan 1/2?",
-            options: ["2/4", "1/3", "3/5", "2/6"],
+            q: "Manakah pecahan yang senilai dengan <span class=\'frac\'><span>1</span><span>2</span></span>?",
+            options: ["<span class=\'frac\'><span>2</span><span>4</span></span>", "<span class=\'frac\'><span>1</span><span>3</span></span>", "<span class=\'frac\'><span>3</span><span>5</span></span>", "<span class=\'frac\'><span>2</span><span>6</span></span>"],
             correct: 0
         },
         {
-            q: "Bandingkan: 3/7 ... 5/7",
+            q: "Bandingkan: <span class=\'frac\'><span>3</span><span>7</span></span> ... <span class=\'frac\'><span>5</span><span>7</span></span>",
             options: [">", "<", "=", "+"],
             correct: 1
         },
         {
-            q: "Bentuk persen (%) dari 1/4 adalah...",
+            q: "Bentuk persen (%) dari <span class=\'frac\'><span>1</span><span>4</span></span> adalah...",
             options: ["10%", "20%", "25%", "50%"],
             correct: 2
         },
         {
-            q: "Bentuk campuran dari 5/2 adalah...",
-            options: ["2 1/2", "1 1/2", "2 2/3", "3 1/2"],
+            q: "Bentuk campuran dari <span class=\'frac\'><span>5</span><span>2</span></span> adalah...",
+            options: ["2 <span class=\'frac\'><span>1</span><span>2</span></span>", "1 <span class=\'frac\'><span>1</span><span>2</span></span>", "2 <span class=\'frac\'><span>2</span><span>3</span></span>", "3 <span class=\'frac\'><span>1</span><span>2</span></span>"],
             correct: 0
         },
         {
-            q: "Pada pecahan 4/9, angka 9 disebut...",
+            q: "Pada pecahan <span class=\'frac\'><span>4</span><span>9</span></span>, angka 9 disebut...",
             options: ["Pembilang", "Penyebut", "Faktor", "Kelipatan"],
             correct: 1
         },
         {
-            q: "Bandingkan dengan trik silang: 2/3 ... 3/4",
+            q: "Bandingkan dengan trik silang: <span class=\'frac\'><span>2</span><span>3</span></span> ... <span class=\'frac\'><span>3</span><span>4</span></span>",
             options: [">", "<", "=", "&ge;"],
             correct: 1
         },
         {
-            q: "Pecahan yang senilai dengan 3/5 adalah...",
-            options: ["6/10", "4/5", "6/15", "5/3"],
+            q: "Pecahan yang senilai dengan <span class=\'frac\'><span>3</span><span>5</span></span> adalah...",
+            options: ["<span class=\'frac\'><span>6</span><span>10</span></span>", "<span class=\'frac\'><span>4</span><span>5</span></span>", "<span class=\'frac\'><span>6</span><span>15</span></span>", "<span class=\'frac\'><span>5</span><span>3</span></span>"],
             correct: 0
         },
         {
-            q: "Bentuk desimal dari pecahan 1/2 adalah...",
+            q: "Bentuk desimal dari pecahan <span class=\'frac\'><span>1</span><span>2</span></span> adalah...",
             options: ["0,2", "0,5", "0,25", "1,2"],
             correct: 1
         },
         {
-            q: "Pecahan paling sederhana dari 4/8 adalah...",
-            options: ["2/4", "1/2", "1/4", "3/6"],
+            q: "Pecahan paling sederhana dari <span class=\'frac\'><span>4</span><span>8</span></span> adalah...",
+            options: ["<span class=\'frac\'><span>2</span><span>4</span></span>", "<span class=\'frac\'><span>1</span><span>2</span></span>", "<span class=\'frac\'><span>1</span><span>4</span></span>", "<span class=\'frac\'><span>3</span><span>6</span></span>"],
             correct: 1
         },
         {
-            q: "Urutkan dari terkecil: 1/5, 4/5, 2/5",
-            options: ["1/5, 2/5, 4/5", "4/5, 2/5, 1/5", "2/5, 1/5, 4/5", "1/5, 4/5, 2/5"],
+            q: "Urutkan dari terkecil: <span class=\'frac\'><span>1</span><span>5</span></span>, <span class=\'frac\'><span>4</span><span>5</span></span>, <span class=\'frac\'><span>2</span><span>5</span></span>",
+            options: ["<span class=\'frac\'><span>1</span><span>5</span></span>, <span class=\'frac\'><span>2</span><span>5</span></span>, <span class=\'frac\'><span>4</span><span>5</span></span>", "<span class=\'frac\'><span>4</span><span>5</span></span>, <span class=\'frac\'><span>2</span><span>5</span></span>, <span class=\'frac\'><span>1</span><span>5</span></span>", "<span class=\'frac\'><span>2</span><span>5</span></span>, <span class=\'frac\'><span>1</span><span>5</span></span>, <span class=\'frac\'><span>4</span><span>5</span></span>", "<span class=\'frac\'><span>1</span><span>5</span></span>, <span class=\'frac\'><span>4</span><span>5</span></span>, <span class=\'frac\'><span>2</span><span>5</span></span>"],
             correct: 0
         }
     ],
 
     wheelChallenges: [
-        { label: "🍕 Tantangan Pizza", desc: "Jika 1 pizza dipotong 8 bagian dan dimakan 3 potong, berapa bagian yang tersisa?", ans: "5/8 bagian" },
-        { label: "⚖️ Senilai Kilat", desc: "Sebutkan 2 pecahan yang senilai dengan 2/3!", ans: "4/6 dan 6/9" },
-        { label: "🦋 Trik Silang", desc: "Mana yang lebih besar: 3/5 atau 2/4? Buktikan dengan perkalian silang!", ans: "3/5 > 2/4 (karena 3x4=12 > 5x2=10)" },
-        { label: "🥞 Ubah Campuran", desc: "Ubah pecahan biasa 11/3 menjadi pecahan campuran!", ans: "3 2/3<br><br><span style='font-size: 0.95rem; font-weight: 500; color: #065F46;'><strong>📖 Penjelasan:</strong> Pecahan 11/3 berarti 11 dibagi 3. Hasil pembagian utuh adalah 3 (karena 3 x 3 = 9). Sisa dari pembagian tersebut adalah 2 (dari 11 - 9). Maka, bilangan bulat utuhnya adalah 3, dan sisanya (2) ditulis sebagai pecahan dengan penyebut awal, sehingga bentuknya menjadi 3 2/3.</span>" },
-        { label: "💯 Tebak Persen", desc: "Berapa persen (%) nilai dari pecahan 3/4?", ans: "75%" },
+        { label: "🍕 Tantangan Pizza", desc: "Jika 1 pizza dipotong 8 bagian dan dimakan 3 potong, berapa bagian yang tersisa?", ans: "<span class=\'frac\'><span>5</span><span>8</span></span> bagian" },
+        { label: "⚖️ Senilai Kilat", desc: "Sebutkan 2 pecahan yang senilai dengan <span class=\'frac\'><span>2</span><span>3</span></span>!", ans: "<span class=\'frac\'><span>4</span><span>6</span></span> dan <span class=\'frac\'><span>6</span><span>9</span></span>" },
+        { label: "🦋 Trik Silang", desc: "Mana yang lebih besar: <span class=\'frac\'><span>3</span><span>5</span></span> atau <span class=\'frac\'><span>2</span><span>4</span></span>? Buktikan dengan perkalian silang!", ans: "<span class=\'frac\'><span>3</span><span>5</span></span> > <span class=\'frac\'><span>2</span><span>4</span></span> (karena 3x4=12 > 5x2=10)" },
+        { label: "🥞 Ubah Campuran", desc: "Ubah pecahan biasa <span class=\'frac\'><span>11</span><span>3</span></span> menjadi pecahan campuran!", ans: "3 <span class=\'frac\'><span>2</span><span>3</span></span><br><br><span style='font-size: 0.95rem; font-weight: 500; color: #065F46;'><strong>📖 Penjelasan:</strong> Pecahan <span class=\'frac\'><span>11</span><span>3</span></span> berarti 11 dibagi 3. Hasil pembagian utuh adalah 3 (karena 3 x 3 = 9). Sisa dari pembagian tersebut adalah 2 (dari 11 - 9). Maka, bilangan bulat utuhnya adalah 3, dan sisanya (2) ditulis sebagai pecahan dengan penyebut awal, sehingga bentuknya menjadi 3 <span class=\'frac\'><span>2</span><span>3</span></span>.</span>" },
+        { label: "💯 Tebak Persen", desc: "Berapa persen (%) nilai dari pecahan <span class=\'frac\'><span>3</span><span>4</span></span>?", ans: "75%" },
         { label: "⭐ Bonus Kelas", desc: "Hore! Semua kelompok di kelas mendapat 50 Bintang Prestasi!", ans: "Bonus +50 ⭐" }
     ]
 };
+
+

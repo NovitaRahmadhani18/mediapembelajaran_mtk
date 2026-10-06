@@ -1621,3 +1621,7 @@ body {
     padding: 4px 16px;
     border-radius: 50px;
 }
+
+.frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1; font-weight: bold; margin: 0 2px; }
+.frac span:first-child { border-bottom: 2px solid currentColor; padding: 0 2px; }
+.frac span:last-child { padding: 0 2px; }
