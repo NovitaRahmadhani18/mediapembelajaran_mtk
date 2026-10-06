@@ -1126,7 +1126,7 @@ function startBalloonGame() {
         const bData = balloonPool[Math.floor(Math.random() * balloonPool.length)];
         const b = document.createElement('div');
         b.className = 'balloon';
-        b.textContent = bData.label;
+        b.innerHTML = bData.label;
         b.style.backgroundColor = bData.bg;
         b.style.left = `${Math.random() * 80 + 5}%`;
         b.style.animationDuration = `${Math.random() * 2 + 4.5}s`;
@@ -1181,14 +1181,14 @@ function initMemoryGame() {
         cardEl.className = 'memory-card';
         cardEl.dataset.pair = c.pair;
         cardEl.dataset.text = c.text;
-        cardEl.textContent = '❓';
+        cardEl.innerHTML = '❓';
 
         cardEl.addEventListener('click', () => {
             if (cardEl.classList.contains('flipped') || cardEl.classList.contains('matched') || state.memoryFlipped.length >= 2) return;
 
             window.soundManager.playPop();
             cardEl.classList.add('flipped');
-            cardEl.textContent = c.text;
+            cardEl.innerHTML = c.text;
             state.memoryFlipped.push(cardEl);
 
             if (state.memoryFlipped.length === 2) {
@@ -1211,8 +1211,8 @@ function initMemoryGame() {
                     setTimeout(() => {
                         c1.classList.remove('flipped');
                         c2.classList.remove('flipped');
-                        c1.textContent = '❓';
-                        c2.textContent = '❓';
+                        c1.innerHTML = '❓';
+                        c2.innerHTML = '❓';
                         state.memoryFlipped = [];
                     }, 850);
                 }
@@ -1303,8 +1303,6 @@ function handleDuelAnswer(team, selectedIdx) {
             triggerDuelWin('🦕 TIM BIRU JUARA TARIK TAMBANG! 🎉', '#2563EB');
             return;
         }
-
-        loadNextDuelQuestion();
     } else {
         window.soundManager.playWrong();
         // Slight penalty: rope slips towards opponent
@@ -1315,6 +1313,9 @@ function handleDuelAnswer(team, selectedIdx) {
         }
         document.getElementById('ropeKnot').style.left = `${duelState.knotPos}%`;
     }
+    
+    // Always advance to the next question after an answer
+    loadNextDuelQuestion();
 }
 
 function triggerDuelWin(winnerText, color) {
@@ -1434,7 +1435,7 @@ function spinWheel() {
 
         const chosen = challenges[selectedIndex];
         document.getElementById('challengeBadge').textContent = chosen.label;
-        document.getElementById('challengeDesc').textContent = chosen.desc;
+        document.getElementById('challengeDesc').innerHTML = chosen.desc;
         document.getElementById('challengeAnswerBox').innerHTML = `✅ <strong>Kunci Jawaban:</strong> ${chosen.ans}`;
         resultCard.style.display = 'block';
     }, 3600);
