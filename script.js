@@ -1228,7 +1228,8 @@ let duelState = {
     round: 0,
     knotPos: 50, // 50% center
     isFinished: false,
-    currentQuestion: null
+    currentQuestion: null,
+    hasAnswered: { red: false, blue: false }
 };
 
 function initDuelGame() {
@@ -1236,7 +1237,8 @@ function initDuelGame() {
         round: 0,
         knotPos: 50,
         isFinished: false,
-        currentQuestion: null
+        currentQuestion: null,
+        hasAnswered: { red: false, blue: false }
     };
 
     document.getElementById('ropeKnot').style.left = '50%';
@@ -1250,6 +1252,7 @@ function loadNextDuelQuestion() {
     if (duelState.isFinished) return;
 
     duelState.round++;
+    duelState.hasAnswered = { red: false, blue: false };
     document.getElementById('duelRoundTag').textContent = `Ronde ${duelState.round}`;
 
     const qList = APP_DATA.duelQuestions;
@@ -1282,6 +1285,7 @@ function loadNextDuelQuestion() {
 
 function handleDuelAnswer(team, selectedIdx) {
     if (duelState.isFinished) return;
+    if (duelState.hasAnswered[team]) return; // Team already answered incorrectly for this round
 
     const isCorrect = selectedIdx === duelState.currentQuestion.correct;
 
@@ -1303,19 +1307,18 @@ function handleDuelAnswer(team, selectedIdx) {
             triggerDuelWin('🦕 TIM BIRU JUARA TARIK TAMBANG! 🎉', '#2563EB');
             return;
         }
+
+        // Advance to next question immediately on correct answer
+        loadNextDuelQuestion();
     } else {
         window.soundManager.playWrong();
-        // Slight penalty: rope slips towards opponent
-        if (team === 'red') {
-            duelState.knotPos = Math.min(75, duelState.knotPos + 6);
-        } else {
-            duelState.knotPos = Math.max(25, duelState.knotPos - 6);
+        duelState.hasAnswered[team] = true;
+        
+        // If both teams have answered incorrectly, advance to next question without moving the flag
+        if (duelState.hasAnswered['red'] && duelState.hasAnswered['blue']) {
+            loadNextDuelQuestion();
         }
-        document.getElementById('ropeKnot').style.left = `${duelState.knotPos}%`;
     }
-    
-    // Always advance to the next question after an answer
-    loadNextDuelQuestion();
 }
 
 function triggerDuelWin(winnerText, color) {
